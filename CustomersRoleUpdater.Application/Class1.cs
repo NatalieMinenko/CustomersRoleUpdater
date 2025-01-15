@@ -1,7 +1,6 @@
-﻿namespace CustomersRoleUpdater.Application
-{
-    public class Class1
-    {
+﻿namespace CustomersRoleUpdater.Application;
 
-    }
+public class Class1
+{
+
 }
