@@ -1,3 +1,5 @@
+using CustomersRoleUpdater.Application.Interfaces;
+using CustomersRoleUpdater.Application;
 using Microsoft.Extensions.Logging.Configuration;
 using Microsoft.Extensions.Logging.EventLog;
 
@@ -18,6 +20,8 @@ public class Program
 
         builder.Logging.AddConfiguration(
         builder.Configuration.GetSection("Logging"));
+
+        builder.Services.AddScoped<IRequestService, RequestService>();
 
         var host = builder.Build();
         host.Run();
