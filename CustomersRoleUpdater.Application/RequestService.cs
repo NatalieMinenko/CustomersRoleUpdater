@@ -7,15 +7,15 @@ namespace CustomersRoleUpdater.Application;
 
 public class RequestService : IRequestService
 {
-    private readonly CommonHttpClient<Customer> _httpClient;
+    private readonly CommonHttpClient<User> _httpClient;
     public RequestService(HttpMessageHandler? handler = null)
     {
-        _httpClient = new CommonHttpClient<Customer>("https://jsonplaceholder.typicode.com", handler);
+        _httpClient = new CommonHttpClient<User>("https://jsonplaceholder.typicode.com", handler);
     }
 
-    public async Task<Customer?> GetCustomersFromJsonPlaceholderAsync()
+    public async Task<List<User?>> GetCustomersFromJsonPlaceholderAsync()
     {
-        return await _httpClient.GetRequest($"/customers");
+        return await _httpClient.GetRequest("/users/");
     }
 }
 

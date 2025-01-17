@@ -19,20 +19,14 @@ internal class CommonHttpClient<T>
         _options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
     }
 
-    public async Task<T> GetRequest(string path)
+    public async Task<List<T>> GetRequest(string path)
     {
-        //try
-        //{
-            var response = await _httpClient.GetAsync(path);
-            response.EnsureSuccessStatusCode();
-            var content = await response.Content.ReadAsStringAsync();
-            var result = JsonSerializer.Deserialize<T>(content, _options);
-            return result;
-        //}
-        //catch (HttpRequestException ex)
-        //{
-        //    throw new UnavailableServiceException("request to jsonplaceholder failed");
-        //}
+        var response = await _httpClient.GetAsync(path);
+        response.EnsureSuccessStatusCode();
+
+        var content = await response.Content.ReadAsStringAsync();
+        var result = JsonSerializer.Deserialize<List<T>>(content, _options);
+        return result;
     }
 
 }
