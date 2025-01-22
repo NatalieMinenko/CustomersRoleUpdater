@@ -1,12 +1,17 @@
+using CustomersRoleUpdater.Application;
+using CustomersRoleUpdater.Application.Interfaces;
+
 namespace WorkerService.Presentation;
 
 public class Worker : BackgroundService
 {
     private readonly ILogger<Worker> _logger;
+    private readonly IRequestService _requestService;
 
     public Worker(ILogger<Worker> logger)
     {
         _logger = logger;
+        _requestService = new RequestService();
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -14,7 +19,8 @@ public class Worker : BackgroundService
         while (!stoppingToken.IsCancellationRequested)
         {
             _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
-            await Task.Delay(6000, stoppingToken);
+            var result = await _requestService.GetCustomersFromJsonPlaceholderAsync();
+            await Task.Delay(TimeSpan.FromHours(24) + TimeSpan.FromHours(2), stoppingToken);
         }
     }
 }
