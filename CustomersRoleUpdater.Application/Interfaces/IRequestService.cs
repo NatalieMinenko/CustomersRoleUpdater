@@ -5,5 +5,7 @@ namespace CustomersRoleUpdater.Application.Interfaces;
 
 public interface IRequestService
 {
-    public Task<List<CustomersWithDateOfBirthday>> GetCustomersFromJsonPlaceholderAsync();
+    public Task<List<Customer>> GetCustomersForUpdateByBirhtdayAsync();
+    public Task<List<Customer>> GetCustomersForUpdateByCountTransactionAsync();
+    public Task<List<Customer>> GetCustomersForUpdateBySumTransactionAsync();
 }

@@ -16,7 +16,7 @@ internal class CommonHttpClient
             _httpClient = new HttpClient(handler);
         }
         _httpClient.BaseAddress = new Uri(baseUrl);
-        _httpClient.Timeout = new TimeSpan(0, 0, 30);
+        _httpClient.Timeout = new TimeSpan(0, 5, 30);
         _options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
     }
 
@@ -29,5 +29,4 @@ internal class CommonHttpClient
         var result = JsonSerializer.Deserialize<List<Customer>>(content, _options);
         return result;
     }
-
 }

@@ -11,6 +11,9 @@ namespace CustomersRoleUpdater.Application;
 
 public class UserStatusUpdater
 {
+
+}
+//{
 //    private static readonly HttpClient httpClient = new HttpClient();
 
 //    private const string BirthdayApiUrl = "https://jsonplaceholder.typicode.com";

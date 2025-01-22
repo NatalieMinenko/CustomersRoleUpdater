@@ -1,5 +1,7 @@
 using CustomersRoleUpdater.Application;
+using CustomersRoleUpdater.Application.Models;
 using CustomersRoleUpdater.Application.Interfaces;
+using Microsoft.Extensions.Options;
 
 namespace WorkerService.Presentation;
 
@@ -18,9 +20,24 @@ public class Worker : BackgroundService
     {
         while (!stoppingToken.IsCancellationRequested)
         {
-            _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
-            var result = await _requestService.GetCustomersFromJsonPlaceholderAsync();
-            await Task.Delay(TimeSpan.FromHours(24) + TimeSpan.FromHours(2), stoppingToken);
+            _logger.LogInformation("Customers RoleUpdater running at: {time}", DateTimeOffset.Now);
+            var task1 = _requestService.GetCustomersForUpdateByBirhtdayAsync();
+            var task2 = _requestService.GetCustomersForUpdateByCountTransactionAsync();
+            var task3 = _requestService.GetCustomersForUpdateBySumTransactionAsync();
+            var results = await Task.WhenAll(task1, task2, task3);
+            var customers = new List<Customer>(); 
+            if (results.Length>0)
+            {
+                foreach (var items in results)
+                {
+                    foreach (var item in items)
+                    {
+                        customers.Add(item);
+                    }
+                }
+            }
+            var T = customers;
+            await Task.Delay(60000, stoppingToken);//TODO
         }
     }
 }
