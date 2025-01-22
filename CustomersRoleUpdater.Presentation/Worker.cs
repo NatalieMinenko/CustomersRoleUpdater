@@ -20,7 +20,7 @@ public class Worker : BackgroundService
         {
             _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
             var result = await _requestService.GetCustomersFromJsonPlaceholderAsync();
-            await Task.Delay(6000, stoppingToken);
+            await Task.Delay(TimeSpan.FromHours(24) + TimeSpan.FromHours(2), stoppingToken);
         }
     }
 }

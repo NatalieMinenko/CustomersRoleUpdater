@@ -1,9 +1,10 @@
 ﻿
+using CustomersRoleUpdater.Application.Models;
 using System.Text.Json;
 
 namespace CustomersRoleUpdater.Application.Integrations;
 
-internal class CommonHttpClient<T>
+internal class CommonHttpClient
 {
     private readonly HttpClient _httpClient = new HttpClient();
     private readonly JsonSerializerOptions _options;
@@ -19,13 +20,13 @@ internal class CommonHttpClient<T>
         _options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
     }
 
-    public async Task<List<T>> GetRequest(string path)
+    public async Task<List<Customer>> GetRequest(string path)
     {
         var response = await _httpClient.GetAsync(path);
         response.EnsureSuccessStatusCode();
 
         var content = await response.Content.ReadAsStringAsync();
-        var result = JsonSerializer.Deserialize<List<T>>(content, _options);
+        var result = JsonSerializer.Deserialize<List<Customer>>(content, _options);
         return result;
     }
 
