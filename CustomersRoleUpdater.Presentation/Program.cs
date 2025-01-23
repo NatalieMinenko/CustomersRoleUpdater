@@ -22,6 +22,7 @@ public class Program
         builder.Configuration.GetSection("Logging"));
 
         builder.Services.AddScoped<IRequestService, RequestService>();
+        builder.Services.AddScoped<ICustomerStatusUpdater, CustomerStatusUpdater>();
 
         var host = builder.Build();
         host.Run();

@@ -9,11 +9,13 @@ public class Worker : BackgroundService
 {
     private readonly ILogger<Worker> _logger;
     private readonly IRequestService _requestService;
+    private readonly ICustomerStatusUpdater _customerStatusUpdater;
 
     public Worker(ILogger<Worker> logger)
     {
         _logger = logger;
         _requestService = new RequestService();
+        _customerStatusUpdater = new CustomerStatusUpdater();
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -25,19 +27,13 @@ public class Worker : BackgroundService
             var task2 = _requestService.GetCustomersForUpdateByCountTransactionAsync();
             var task3 = _requestService.GetCustomersForUpdateBySumTransactionAsync();
             var results = await Task.WhenAll(task1, task2, task3);
-            var customers = new List<Customer>(); 
             if (results.Length>0)
             {
-                foreach (var items in results)
-                {
-                    foreach (var item in items)
-                    {
-                        customers.Add(item);
-                    }
-                }
+                var resultCustomers = _customerStatusUpdater.UpdateCustomerRoles(results);
+                //var r = resultCustomers;
             }
-            var T = customers;
-            await Task.Delay(60000, stoppingToken);//TODO
+                                    
+            await Task.Delay(60000, stoppingToken);
         }
     }
 }

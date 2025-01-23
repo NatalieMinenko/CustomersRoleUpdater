@@ -1,5 +1,4 @@
-﻿
-using CustomersRoleUpdater.Application.Models;
+﻿using CustomersRoleUpdater.Application.Models;
 using System.Text.Json;
 
 namespace CustomersRoleUpdater.Application.Integrations;
