@@ -16,8 +16,15 @@ public class RequestService : IRequestService
 
     public async Task<List<Customer>>GetCustomersForUpdateByBirhtdayAsync()
     {
-        //return await _httpClient.GetRequest("/birthday/");
-        return new List<Customer>() {new Customer(){ Id = guid, Role=Role.Regular}};
+        var query = new Dictionary<string, int>()
+        {
+            ["month"] = 2,
+            ["count"] = 42,
+        };
+
+        var resultQuery = RequestUriUtil.GetUriWithQueryString(query);
+        return await _httpClient.GetRequest($"/birthday/{resultQuery}");
+        //return new List<Customer>() {new Customer(){ Id = guid, Role=Role.Regular}};
     }
     public async Task<List<Customer>> GetCustomersForUpdateByCountTransactionAsync()
     {
