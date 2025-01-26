@@ -3,25 +3,17 @@ using CustomersRoleUpdater.Application.Interfaces;
 
 namespace CustomersRoleUpdater.Application;
 
-public class CustomerStatusUpdater : ICustomerStatusUpdater
-
+public class CustomersStatusUpdater(ICustomersDataRequest customerDataRequest) : ICustomersStatusUpdater
 {
-    private readonly ICustomerDataRequest _customerDataRequest;
-
-    public CustomerStatusUpdater()
-    {
-        _customerDataRequest = new CustomersDataRequest();
-    }
-
     public List<Customer> UpdateCustomerRoles(IEnumerable <List<Customer>> customers)
     {
         return customers.SelectMany(c => c).DistinctBy(p => p.Id).ToList();
     }
     public async Task RequestProcessingAsync()
     {
-        var task1 = _customerDataRequest.GetCustomersForUpdateByBirhtdayAsync();
-        var task2 = _customerDataRequest.GetCustomersForUpdateByCountTransactionAsync();
-        var task3 = _customerDataRequest.GetCustomersForUpdateBySumTransactionAsync();
+        var task1 = customerDataRequest.GetCustomersForUpdateByBirhtdayAsync();
+        var task2 = customerDataRequest.GetCustomersForUpdateByCountTransactionAsync();
+        var task3 = customerDataRequest.GetCustomersForUpdateBySumTransactionAsync();
         var results = await Task.WhenAll(task1, task2, task3);
         if (results.Length > 0)
         {

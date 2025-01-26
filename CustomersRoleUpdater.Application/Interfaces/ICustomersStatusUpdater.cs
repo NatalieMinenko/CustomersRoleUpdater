@@ -2,7 +2,7 @@
 
 namespace CustomersRoleUpdater.Application.Interfaces;
 
-public interface ICustomerStatusUpdater
+public interface ICustomersStatusUpdater
 {
     public List<Customer> UpdateCustomerRoles(IEnumerable<List<Customer>> customers);
     public Task RequestProcessingAsync();

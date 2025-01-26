@@ -2,6 +2,7 @@ using CustomersRoleUpdater.Application.Interfaces;
 using CustomersRoleUpdater.Application;
 using Microsoft.Extensions.Logging.Configuration;
 using Microsoft.Extensions.Logging.EventLog;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace WorkerService.Presentation;
 
@@ -12,7 +13,7 @@ public class Program
         var builder = Host.CreateApplicationBuilder(args);
         builder.Services.AddWindowsService(options =>
         {
-            options.ServiceName = "Worcer for update role";
+            options.ServiceName = "Worker for update role";
         });
         LoggerProviderOptions.RegisterProviderOptions<EventLogSettings, EventLogLoggerProvider>(builder.Services);
 
@@ -21,8 +22,8 @@ public class Program
         builder.Logging.AddConfiguration(
         builder.Configuration.GetSection("Logging"));
 
-        //builder.Services.AddScoped<ICustomerDataRequest, CustomersDataRequest>();
-        //builder.Services.AddScoped<ICustomerStatusUpdater, CustomerStatusUpdater>();
+        builder.Services.AddSingleton<ICustomersDataRequest, CustomersDataRequest>();
+        builder.Services.AddSingleton<ICustomersStatusUpdater, CustomersStatusUpdater>();
 
         var host = builder.Build();
         host.Run();

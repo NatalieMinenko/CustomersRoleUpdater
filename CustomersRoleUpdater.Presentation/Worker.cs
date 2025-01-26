@@ -8,9 +8,9 @@ namespace WorkerService.Presentation;
 public class Worker : BackgroundService
 {
     private readonly ILogger<Worker> _logger;
-    private readonly ICustomerStatusUpdater _customerStatusUpdater;
+    private readonly ICustomersStatusUpdater _customerStatusUpdater;
 
-    public Worker(ILogger<Worker> logger, ICustomerStatusUpdater customerStatusUpdater)
+    public Worker(ILogger<Worker> logger, ICustomersStatusUpdater customerStatusUpdater)
     {
         _logger = logger;
         _customerStatusUpdater = customerStatusUpdater;

@@ -4,7 +4,7 @@ using CustomersRoleUpdater.Application.Integrations;
 
 namespace CustomersRoleUpdater.Application;
 
-public class CustomersDataRequest : ICustomerDataRequest
+public class CustomersDataRequest : ICustomersDataRequest
 {
     private readonly CommonHttpClient<List<Customer>> _httpClient;
     private readonly string _baseUrl = "localhost:1111";
