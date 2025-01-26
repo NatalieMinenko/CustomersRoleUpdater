@@ -6,18 +6,27 @@ namespace CustomersRoleUpdater.Application;
 
 public class RequestService : IRequestService
 {
-    private readonly CommonHttpClient _httpClient;
+    private readonly CommonHttpClient<List<Customer>> _httpClient;
+    private readonly string _baseUrl = "localhost:1111";
+
     public RequestService(HttpMessageHandler? handler = null)
     {
-        _httpClient = new CommonHttpClient("localhost:1111", handler);
+        _httpClient = new CommonHttpClient<List<Customer>>(_baseUrl, handler);
     }
 
     Guid guid = Guid.NewGuid();
 
     public async Task<List<Customer>>GetCustomersForUpdateByBirhtdayAsync()
     {
-        //return await _httpClient.GetRequest("/birthday/");
-        return new List<Customer>() {new Customer(){ Id = guid, Role=Role.Regular}};
+        var query = new Dictionary<string, string>()
+        {
+            ["month"] = "2",
+            ["count"] = "42",
+        };
+
+        var resultQuery = RequestUriUtil.GetUriWithQueryString(query);
+        return await _httpClient.GetRequest($"/birthday/{resultQuery}");
+        //return new List<Customer>() {new Customer(){ Id = guid, Role=Role.Regular}};
     }
     public async Task<List<Customer>> GetCustomersForUpdateByCountTransactionAsync()
     {
