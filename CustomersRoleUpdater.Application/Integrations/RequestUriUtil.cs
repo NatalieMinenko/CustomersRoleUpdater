@@ -7,7 +7,7 @@ namespace CustomersRoleUpdater.Application.Integrations
     public static class RequestUriUtil
     {
         public static string GetUriWithQueryString(
-            Dictionary<string, int> queryStringParams)
+            Dictionary<string, string> queryStringParams)
         {
             bool startingQuestionMarkAdded = false;
             var sb = new StringBuilder();
