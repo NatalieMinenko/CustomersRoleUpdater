@@ -8,14 +8,12 @@ namespace WorkerService.Presentation;
 public class Worker : BackgroundService
 {
     private readonly ILogger<Worker> _logger;
-    private readonly IRequestService _requestService;
     private readonly ICustomerStatusUpdater _customerStatusUpdater;
 
-    public Worker(ILogger<Worker> logger)
+    public Worker(ILogger<Worker> logger, ICustomerStatusUpdater customerStatusUpdater)
     {
         _logger = logger;
-        _requestService = new RequestService();
-        _customerStatusUpdater = new CustomerStatusUpdater();
+        _customerStatusUpdater = customerStatusUpdater;
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -23,16 +21,7 @@ public class Worker : BackgroundService
         while (!stoppingToken.IsCancellationRequested)
         {
             _logger.LogInformation("Customers RoleUpdater running at: {time}", DateTimeOffset.Now);
-            var task1 = _requestService.GetCustomersForUpdateByBirhtdayAsync();
-            var task2 = _requestService.GetCustomersForUpdateByCountTransactionAsync();
-            var task3 = _requestService.GetCustomersForUpdateBySumTransactionAsync();
-            var results = await Task.WhenAll(task1, task2, task3);
-            if (results.Length>0)
-            {
-                var resultCustomers = _customerStatusUpdater.UpdateCustomerRoles(results);
-                //var r = resultCustomers;
-            }
-                                    
+            await _customerStatusUpdater.RequestProcessingAsync();
             await Task.Delay(60000, stoppingToken);
         }
     }

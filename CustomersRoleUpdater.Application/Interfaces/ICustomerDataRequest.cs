@@ -3,7 +3,7 @@ using CustomersRoleUpdater.Application.Models;
 
 namespace CustomersRoleUpdater.Application.Interfaces;
 
-public interface IRequestService
+public interface ICustomerDataRequest
 {
     public Task<List<Customer>> GetCustomersForUpdateByBirhtdayAsync();
     public Task<List<Customer>> GetCustomersForUpdateByCountTransactionAsync();
