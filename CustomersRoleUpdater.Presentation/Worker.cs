@@ -1,7 +1,5 @@
-using CustomersRoleUpdater.Application;
-using CustomersRoleUpdater.Application.Models;
+
 using CustomersRoleUpdater.Application.Interfaces;
-using Microsoft.Extensions.Options;
 
 namespace WorkerService.Presentation;
 
@@ -21,7 +19,7 @@ public class Worker : BackgroundService
         while (!stoppingToken.IsCancellationRequested)
         {
             _logger.LogInformation("Customers RoleUpdater running at: {time}", DateTimeOffset.Now);
-            await _customerStatusUpdater.RequestProcessingAsync();
+            await _customerStatusUpdater.GetAllCustomersAndUpdateRoleAsync();
             await Task.Delay(60000, stoppingToken);
         }
     }
