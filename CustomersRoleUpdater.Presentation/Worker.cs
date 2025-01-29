@@ -1,4 +1,4 @@
-using CustomersRoleUpdater.Application;
+
 using CustomersRoleUpdater.Application.Interfaces;
 
 namespace WorkerService.Presentation;
@@ -6,21 +6,21 @@ namespace WorkerService.Presentation;
 public class Worker : BackgroundService
 {
     private readonly ILogger<Worker> _logger;
-    private readonly IRequestService _requestService;
+    private readonly ICustomersStatusUpdater _customerStatusUpdater;
 
-    public Worker(ILogger<Worker> logger)
+    public Worker(ILogger<Worker> logger, ICustomersStatusUpdater customerStatusUpdater)
     {
         _logger = logger;
-        _requestService = new RequestService();
+        _customerStatusUpdater = customerStatusUpdater;
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         while (!stoppingToken.IsCancellationRequested)
         {
-            _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
-            var result = await _requestService.GetCustomersFromJsonPlaceholderAsync();
-            await Task.Delay(TimeSpan.FromHours(24) + TimeSpan.FromHours(2), stoppingToken);
+            _logger.LogInformation("Customers RoleUpdater running at: {time}", DateTimeOffset.Now);
+            await _customerStatusUpdater.GetAllCustomersAndUpdateRoleAsync();
+            await Task.Delay(60000, stoppingToken);
         }
     }
 }
