@@ -3,13 +3,13 @@ using CustomersRoleUpdater.Application.Interfaces;
 
 namespace CustomersRoleUpdater.Application;
 
-public class CustomersStatusUpdater(ICustomersDataRequest customerDataRequest) : ICustomersStatusUpdater
+public class CustomersStatusUpdater(ICustomerDataService customerDataRequest) : ICustomersStatusUpdater
 {
     public List<Customer> UpdateCustomerRoles(IEnumerable <List<Customer>> customers)
     {
         return customers.SelectMany(c => c).DistinctBy(p => p.Id).ToList();
     }
-    public async Task RequestProcessingAsync()
+    public async Task GetAllCustomersAndUpdateRoleAsync()
     {
         var task1 = customerDataRequest.GetCustomersForUpdateByBirhtdayAsync();
         var task2 = customerDataRequest.GetCustomersForUpdateByCountTransactionAsync();
