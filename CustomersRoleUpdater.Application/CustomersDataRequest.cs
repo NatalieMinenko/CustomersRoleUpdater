@@ -6,12 +6,12 @@ namespace CustomersRoleUpdater.Application;
 
 public class CustomersDataRequest : ICustomersDataRequest
 {
-    private readonly CommonHttpClient<List<Customer>> _httpClient;
+    private readonly CommonHttpClient _httpClient;
     private readonly string _baseUrl = "localhost:1111";
 
     public CustomersDataRequest(HttpMessageHandler? handler = null)
     {
-        _httpClient = new CommonHttpClient<List<Customer>>(_baseUrl, handler);
+        _httpClient = new CommonHttpClient(_baseUrl, handler);
     }
 
     Guid guid = Guid.NewGuid();
@@ -25,7 +25,7 @@ public class CustomersDataRequest : ICustomersDataRequest
         };
 
         var resultQuery = RequestUriUtil.GetUriWithQueryString(query);
-        return await _httpClient.GetRequest($"/birthday/{resultQuery}");
+        return await _httpClient.GetRequest<List<Customer>>($"/birthday/{resultQuery}");
         //return new List<Customer>() {new Customer(){ Id = guid, Role=Role.Regular}};
     }
     public async Task<List<Customer>> GetCustomersForUpdateByCountTransactionAsync()
