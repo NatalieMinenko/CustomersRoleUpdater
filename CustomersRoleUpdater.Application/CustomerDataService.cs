@@ -4,12 +4,12 @@ using CustomersRoleUpdater.Application.Integrations;
 
 namespace CustomersRoleUpdater.Application;
 
-public class CustomersDataRequest : ICustomerDataService
+public class CustomersDataService : ICustomerDataService
 {
     private readonly CommonHttpClient _httpClient;
     private readonly string _baseUrl = "localhost:1111";
 
-    public CustomersDataRequest(HttpMessageHandler? handler = null)
+    public CustomersDataService(HttpMessageHandler? handler = null)
     {
         _httpClient = new CommonHttpClient(_baseUrl, handler);
     }

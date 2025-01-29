@@ -22,7 +22,7 @@ public class Program
         builder.Logging.AddConfiguration(
         builder.Configuration.GetSection("Logging"));
 
-        builder.Services.AddSingleton<ICustomerDataService, CustomersDataRequest>();
+        builder.Services.AddSingleton<ICustomerDataService, CustomersDataService>();
         builder.Services.AddSingleton<ICustomersStatusUpdater, CustomersStatusUpdater>();
 
         var host = builder.Build();
