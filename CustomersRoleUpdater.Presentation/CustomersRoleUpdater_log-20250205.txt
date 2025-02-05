@@ -1,0 +1,9 @@
+[05-02-2025 23:21:58.407 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/05/2025 23:21:58 +03:00
+[05-02-2025 23:24:56.268 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/05/2025 23:24:56 +03:00
+[05-02-2025 23:24:56.304 Microsoft.Hosting.Lifetime INF] #: Application started. Press Ctrl+C to shut down.
+[05-02-2025 23:24:56.305 Microsoft.Hosting.Lifetime INF] #: Hosting environment: "Development"
+[05-02-2025 23:24:56.307 Microsoft.Hosting.Lifetime INF] #: Content root path: "C:\Users\User\source\repos\CustomersRoleUpdater\CustomersRoleUpdater.Presentation"
+[05-02-2025 23:25:37.121 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/05/2025 23:25:37 +03:00
+[05-02-2025 23:25:37.160 Microsoft.Hosting.Lifetime INF] #: Application started. Press Ctrl+C to shut down.
+[05-02-2025 23:25:37.162 Microsoft.Hosting.Lifetime INF] #: Hosting environment: "Development"
+[05-02-2025 23:25:37.164 Microsoft.Hosting.Lifetime INF] #: Content root path: "C:\Users\User\source\repos\CustomersRoleUpdater\CustomersRoleUpdater.Presentation"
