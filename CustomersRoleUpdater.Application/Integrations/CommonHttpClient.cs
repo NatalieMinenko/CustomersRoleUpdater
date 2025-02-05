@@ -5,7 +5,7 @@ namespace CustomersRoleUpdater.Application.Integrations;
 
 internal class CommonHttpClient
 {
-    private readonly HttpClient _httpClient = new HttpClient();
+    private readonly HttpClient _httpClient = new();
     private readonly JsonSerializerOptions _options;
 
     public CommonHttpClient(string baseUrl, HttpMessageHandler? handler = null)
