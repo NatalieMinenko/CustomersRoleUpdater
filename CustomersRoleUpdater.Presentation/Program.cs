@@ -2,7 +2,7 @@ using CustomersRoleUpdater.Application.Interfaces;
 using CustomersRoleUpdater.Application;
 using Microsoft.Extensions.Logging.Configuration;
 using Microsoft.Extensions.Logging.EventLog;
-using Microsoft.Extensions.DependencyInjection;
+using MassTransit;
 
 namespace WorkerService.Presentation;
 
@@ -16,6 +16,18 @@ public class Program
             options.ServiceName = "Worker for update role";
         });
         LoggerProviderOptions.RegisterProviderOptions<EventLogSettings, EventLogLoggerProvider>(builder.Services);
+
+        builder.Services.AddMassTransit(x =>
+        {
+            x.UsingRabbitMq((context, cfg) =>
+            {
+                cfg.Host("localhost", "/", h =>
+                {
+                    h.Username("guest");
+                    h.Password("guest");
+                });
+            });
+        });
 
         builder.Services.AddHostedService<Worker>();
 
