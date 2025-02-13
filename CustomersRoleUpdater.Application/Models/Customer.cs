@@ -1,5 +1,4 @@
-﻿using System.Security.Principal;
-
+﻿
 namespace CustomersRoleUpdater.Application.Models;
 
 public class Customer

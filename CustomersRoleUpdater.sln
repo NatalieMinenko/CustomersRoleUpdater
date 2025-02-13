@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomersRoleUpdater.Presentation", "CustomersRoleUpdater.Presentation\CustomersRoleUpdater.Presentation.csproj", "{51A9AC93-813F-4EFB-9617-59F6D64790DB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomersRoleUpdater.Application", "CustomersRoleUpdater.Application\CustomersRoleUpdater.Application.csproj", "{57F40016-D5C0-4FBC-8B52-B8438FCA2750}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoleRenewalContract", "ContractForRoleUpdater\RoleRenewalContract\RoleRenewalContract.csproj", "{8ACFFBC6-D959-4DD7-9348-111387899259}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{57F40016-D5C0-4FBC-8B52-B8438FCA2750}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57F40016-D5C0-4FBC-8B52-B8438FCA2750}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57F40016-D5C0-4FBC-8B52-B8438FCA2750}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8ACFFBC6-D959-4DD7-9348-111387899259}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8ACFFBC6-D959-4DD7-9348-111387899259}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8ACFFBC6-D959-4DD7-9348-111387899259}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8ACFFBC6-D959-4DD7-9348-111387899259}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

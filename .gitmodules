@@ -1,0 +1,3 @@
+[submodule "ContractForRoleUpdater"]
+	path = ContractForRoleUpdater
+	url = https://github.com/Konstantin-del/ContractForRoleUpdater.git

@@ -8,11 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.1" />
     <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="9.0.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ContractForRoleUpdater\RoleRenewalContract\RoleRenewalContract.csproj" />
     <ProjectReference Include="..\CustomersRoleUpdater.Application\CustomersRoleUpdater.Application.csproj" />
   </ItemGroup>
 </Project>

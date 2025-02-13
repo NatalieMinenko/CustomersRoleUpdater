@@ -25,8 +25,8 @@ public class CustomersDataService : ICustomerDataService
         };
 
         var resultQuery = RequestUriUtil.GetUriWithQueryString(query);
-        return await _httpClient.GetRequest<List<Customer>>($"/birthday/{resultQuery}");
-        //return new List<Customer>() {new Customer(){ Id = guid, Role=Role.Regular}};
+        //return await _httpClient.GetRequest<List<Customer>>($"/birthday/{resultQuery}");
+        return new List<Customer>() {new Customer(){ Id = guid, Role=Role.Regular}};
     }
     public async Task<List<Customer>> GetCustomersForUpdateByCountTransactionAsync()
     {

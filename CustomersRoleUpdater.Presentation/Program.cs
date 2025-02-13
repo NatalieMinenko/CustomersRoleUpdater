@@ -3,7 +3,7 @@ using CustomersRoleUpdater.Application;
 using Microsoft.Extensions.Logging.Configuration;
 using Microsoft.Extensions.Logging.EventLog;
 using MassTransit;
-
+using CustomersRoleUpdater.Application.Mappings;
 namespace WorkerService.Presentation;
 
 public class Program
@@ -36,6 +36,7 @@ public class Program
 
         builder.Services.AddSingleton<ICustomerDataService, CustomersDataService>();
         builder.Services.AddSingleton<ICustomersStatusUpdater, CustomersStatusUpdater>();
+        builder.Services.AddAutoMapper(typeof(CustomersAutomapperProfile));
 
         var host = builder.Build();
         host.Run();
