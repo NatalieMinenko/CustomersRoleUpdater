@@ -1,9 +1,11 @@
 ﻿using CustomersRoleUpdater.Application.Interfaces;
+using CustomersRoleUpdater.Application.Models;
 using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
 using Moq;
 using Moq.Protected;
 using System;
 using System.Net;
+using System.Text.Json;
 
 namespace CustomersRoleUpdater.Application.Tests;
 
@@ -11,7 +13,7 @@ public class CustomerDataServiceTest
 {
     private ICustomerDataService _sut;
     private Mock<HttpMessageHandler> _messageHandlerMock;
-    private string _baseAddress = "";
+    private string _baseAddress = "https://github.com/";
 
     public CustomerDataServiceTest()
     {
@@ -20,24 +22,28 @@ public class CustomerDataServiceTest
     }
 
     [Fact]
-    public void Test1()
+    public async Task GetCustomersForUpdateByCountTransactionAsync_GetSuccessAndCorrectType()
     {
         // arrange
-        var apiEndpoint = $"/count/";
-        var mockedProtected = _messageHandlerMock.Protected();
-        var response = "";
-        var setupApiRequest = mockedProtected.Setup<Task<HttpResponseMessage>>(
+        var apiEndpoint = "count";
+
+        var response = new List<Customer>() {
+            new Customer{Id=Guid.NewGuid(), Role = Role.Regular }};
+        var json = JsonSerializer.Serialize(response);
+
+        var setupApiRequest = _messageHandlerMock.Protected().Setup<Task<HttpResponseMessage>>(
             "SendAsync",
             ItExpr.Is<HttpRequestMessage>(m => m.RequestUri!.Equals(_baseAddress + apiEndpoint)),
             ItExpr.IsAny<CancellationToken>()
         ).ReturnsAsync(new HttpResponseMessage()
         {
             StatusCode = HttpStatusCode.OK,
-            Content = new StringContent(response)
+            Content = new StringContent(json),
         });
         // act
-        var result = _sut.GetCustomersForUpdateByCountTransactionAsync();
+        var result = await _sut.GetCustomersForUpdateByCountTransactionAsync();
         // assert
-        //Assert.NotEmpty(result);
+        Assert.NotEmpty(result);
+        Assert.Equivalent(result, response);
     }
 }
