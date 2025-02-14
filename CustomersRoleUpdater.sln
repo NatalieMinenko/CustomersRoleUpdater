@@ -15,11 +15,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{17D86175
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomersRoleUpdater.Application.Tests", "CustomersRoleUpdater.Application.Tests\CustomersRoleUpdater.Application.Tests.csproj", "{27F94B31-D764-4B35-9BAF-3B87AE9AC934}"
 >>>>>>> StartCreateTest
-=======
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{17D86175-87E0-4715-911F-FFC5C2D46668}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomersRoleUpdater.Application.Tests", "CustomersRoleUpdater.Application.Tests\CustomersRoleUpdater.Application.Tests.csproj", "{27F94B31-D764-4B35-9BAF-3B87AE9AC934}"
->>>>>>> StartCreateTest
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
