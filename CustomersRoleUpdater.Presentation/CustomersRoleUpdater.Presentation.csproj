@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ContractForRoleUpdater\RoleRenewalContract\RoleRenewalContract.csproj" />
+    <ProjectReference Include="..\Contract\Contract.csproj" />
     <ProjectReference Include="..\CustomersRoleUpdater.Application\CustomersRoleUpdater.Application.csproj" />
   </ItemGroup>
 </Project>

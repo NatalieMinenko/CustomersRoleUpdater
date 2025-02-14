@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using CustomersRoleUpdater.Application.Models;
-using RoleRenewalContract;
+using Contract;
 
 namespace CustomersRoleUpdater.Application.Mappings
 {

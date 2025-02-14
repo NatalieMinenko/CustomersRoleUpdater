@@ -1,6 +1,6 @@
 ﻿using CustomersRoleUpdater.Application.Models;
 using CustomersRoleUpdater.Application.Interfaces;
-using RoleRenewalContract;
+using Contract;
 using AutoMapper;
 
 namespace CustomersRoleUpdater.Application;
@@ -10,7 +10,7 @@ public class CustomersStatusUpdater(
     IMapper mapper
 ) : ICustomersStatusUpdater
 {
-    public async Task<CustomerIdsModel> UpdateCustomerRoles(IEnumerable <List<Customer>> customers)
+    public CustomerIdsModel UpdateCustomerRoles(IEnumerable <List<Customer>> customers)
     {
         var result = customers.SelectMany(c => c).DistinctBy(p => p.Id).ToList();
         return mapper.Map<CustomerIdsModel>(result);
@@ -23,7 +23,7 @@ public class CustomersStatusUpdater(
         var listCustomers = await Task.WhenAll(task1, task2, task3);
         if (listCustomers.Length > 0)
         {
-            return await UpdateCustomerRoles(listCustomers);
+            return UpdateCustomerRoles(listCustomers);
         }
         return null;
     }

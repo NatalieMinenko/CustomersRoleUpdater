@@ -1,7 +1,7 @@
 
 using CustomersRoleUpdater.Application.Interfaces;
 using MassTransit;
-using RoleRenewalContract;
+using Contract;
 namespace WorkerService.Presentation;
 
 public class Worker(
