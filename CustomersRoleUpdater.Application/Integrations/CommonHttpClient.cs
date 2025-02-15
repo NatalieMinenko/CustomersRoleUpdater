@@ -19,13 +19,19 @@ internal class CommonHttpClient
         _options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
     }
 
-    public async Task<T> GetRequest<T>(string path)
+    public async Task<T?> GetRequest<T>(string path)
     {
         var response = await _httpClient.GetAsync(path);
-        response.EnsureSuccessStatusCode();
-
-        var content = await response.Content.ReadAsStringAsync();
-        var result = JsonSerializer.Deserialize<T>(content, _options);
-        return result;
+        if (response.IsSuccessStatusCode)
+        {
+            var content = await response.Content.ReadAsStringAsync();
+            var result = JsonSerializer.Deserialize<T>(content, _options);
+            return result;
+        }
+        else
+        {
+            response.EnsureSuccessStatusCode();
+            return default(T);
+        }
     }
 }
