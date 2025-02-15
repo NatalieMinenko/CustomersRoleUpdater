@@ -1,4 +1,5 @@
-﻿namespace Contract;
+﻿
+namespace Contract;
 
 public class CustomerIdsModel
 {
