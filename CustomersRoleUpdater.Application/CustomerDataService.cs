@@ -7,7 +7,7 @@ namespace CustomersRoleUpdater.Application;
 public class CustomersDataService : ICustomerDataService
 {
     private readonly CommonHttpClient _httpClient;
-    private readonly string _baseUrl = "localhost:1111";
+    private readonly string _baseUrl = "https://github.com/";
 
     public CustomersDataService(HttpMessageHandler? handler = null)
     {
@@ -30,12 +30,12 @@ public class CustomersDataService : ICustomerDataService
     }
     public async Task<List<Customer>> GetCustomersForUpdateByCountTransactionAsync()
     {
-        //return await _httpClient.GetRequest("/count/");
-        return new List<Customer>() { new Customer() { Id = guid, Role = Role.Regular } };
+        return await _httpClient.GetRequest<List<Customer>>("count");
+       // return new List<Customer>() { new Customer() { Id = guid, Role = Role.Regular } };
     }
     public async Task<List<Customer>> GetCustomersForUpdateBySumTransactionAsync()
     {
-        //return await _httpClient.GetRequest("/sum/");
+        //return await _httpClient.GetRequest<List<Customer>>("/sum/");
         return new List<Customer>() { new Customer() { Id = guid, Role = Role.Regular } };
     }
 }
