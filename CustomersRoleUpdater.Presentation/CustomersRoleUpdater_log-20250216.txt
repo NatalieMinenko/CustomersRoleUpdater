@@ -1,0 +1,26 @@
+[16-02-2025 00:40:48.408 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/16/2025 00:40:48 +03:00
+[16-02-2025 00:40:48.479 Microsoft.Extensions.Hosting.Internal.Host ERR] #: Hosting failed to start
+AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
+
+Mapping types:
+List`1 -> ListCustomerId
+System.Collections.Generic.List`1[[System.Guid, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]] -> Contract.ListCustomerId
+   at lambda_method1(Closure, Object, ListCustomerId, ResolutionContext)
+   at CustomersRoleUpdater.Application.CustomersStatusUpdater.UpdateCustomerRoles(List`1 customers) in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\CustomersStatusUpdater.cs:line 18
+   at CustomersRoleUpdater.Application.CustomersStatusUpdater.GetAllCustomersAndUpdateRoleAsync() in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\CustomersStatusUpdater.cs:line 36
+   at WorkerService.Presentation.Worker.ExecuteAsync(CancellationToken stoppingToken) in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation\Worker.cs:line 19
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__14_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+[16-02-2025 00:40:48.518 MassTransit WRN] #: Failed to stop bus: rabbitmq://localhost/HP_CustomersRoleUpdaterPresentation_bus_at1yyydz4f8pmftdbdqwhnmjbf?temporary=true ("Not Started")
+[16-02-2025 17:14:18.263 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/16/2025 17:14:18 +03:00
+[16-02-2025 17:14:18.431 Microsoft.Hosting.Lifetime INF] #: Application started. Press Ctrl+C to shut down.
+[16-02-2025 17:14:18.432 Microsoft.Hosting.Lifetime INF] #: Hosting environment: "Development"
+[16-02-2025 17:14:18.434 Microsoft.Hosting.Lifetime INF] #: Content root path: "C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation"
+[16-02-2025 17:14:18.500 MassTransit INF] #: Bus started: rabbitmq://localhost/
+[16-02-2025 17:15:18.650 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/16/2025 17:15:18 +03:00
+[16-02-2025 17:15:32.738 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/16/2025 17:15:32 +03:00
+[16-02-2025 17:15:32.806 Microsoft.Hosting.Lifetime INF] #: Application started. Press Ctrl+C to shut down.
+[16-02-2025 17:15:32.808 Microsoft.Hosting.Lifetime INF] #: Hosting environment: "Development"
+[16-02-2025 17:15:32.809 Microsoft.Hosting.Lifetime INF] #: Content root path: "C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation"
+[16-02-2025 17:15:32.877 MassTransit INF] #: Bus started: rabbitmq://localhost/
+[16-02-2025 17:15:38.977 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/16/2025 17:15:38 +03:00

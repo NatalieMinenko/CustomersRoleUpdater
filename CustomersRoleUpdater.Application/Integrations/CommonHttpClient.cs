@@ -30,7 +30,7 @@ internal class CommonHttpClient
         }
         else
         {
-            response.EnsureSuccessStatusCode();
+            //response.EnsureSuccessStatusCode();
             return default(T);
         }
     }

@@ -16,9 +16,14 @@ public class Worker(
         while (!stoppingToken.IsCancellationRequested)
         {
             logger.LogInformation("Customers RoleUpdater running at: {time}", DateTimeOffset.Now);
+
             var list = await customerStatusUpdater.GetAllCustomersAndUpdateRoleAsync();
-            await bus.Publish<ListCustomerId>(list);
-            await Task.Delay(60000, stoppingToken);
+
+            if (list is not null)
+                await bus.Publish<ListCustomerId>(list);
+
+
+            await Task.Delay(6000, stoppingToken);
         }
     }
 }
