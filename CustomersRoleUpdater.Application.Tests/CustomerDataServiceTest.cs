@@ -1,9 +1,11 @@
 ﻿using CustomersRoleUpdater.Application.Interfaces;
+using CustomersRoleUpdater.Application.Models;
 using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
 using Moq;
 using Moq.Protected;
 using System;
 using System.Net;
+using System.Text.Json;
 
 namespace CustomersRoleUpdater.Application.Tests;
 
@@ -11,7 +13,7 @@ public class CustomerDataServiceTest
 {
     private ICustomerDataService _sut;
     private Mock<HttpMessageHandler> _messageHandlerMock;
-    private string _baseAddress = "";
+    private string _baseAddress = "https://github.com/";
 
     public CustomerDataServiceTest()
     {
@@ -20,12 +22,16 @@ public class CustomerDataServiceTest
     }
 
     [Fact]
-    public void Test1()
+    public async Task GetCustomersForUpdateByCountTransactionAsync_callMethod_getCustomersSuccess()
     {
         // arrange
-        var apiEndpoint = $"/count/";
+        var apiEndpoint = $"count";
         var mockedProtected = _messageHandlerMock.Protected();
-        var response = "";
+        var obj = new List<Customer>() 
+            { new Customer() { Id = Guid.NewGuid(), Role = Role.Regular} };
+
+        var response = JsonSerializer.Serialize(obj); 
+
         var setupApiRequest = mockedProtected.Setup<Task<HttpResponseMessage>>(
             "SendAsync",
             ItExpr.Is<HttpRequestMessage>(m => m.RequestUri!.Equals(_baseAddress + apiEndpoint)),
@@ -36,8 +42,9 @@ public class CustomerDataServiceTest
             Content = new StringContent(response)
         });
         // act
-        var result = _sut.GetCustomersForUpdateByCountTransactionAsync();
+        var result = await _sut.GetCustomersForUpdateByCountTransactionAsync();
+        var f = result;
         // assert
-        //Assert.NotEmpty(result);
+        Assert.Equivalent(result, obj);
     }
 }
