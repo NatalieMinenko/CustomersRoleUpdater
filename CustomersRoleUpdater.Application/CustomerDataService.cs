@@ -30,8 +30,8 @@ public class CustomersDataService : ICustomerDataService
     }
     public async Task<List<Customer>> GetCustomersForUpdateByCountTransactionAsync()
     {
-        return await _httpClient.GetRequest<List<Customer>>("count");
-       // return new List<Customer>() { new Customer() { Id = guid, Role = Role.Regular } };
+        //return await _httpClient.GetRequest<List<Customer>>("count");
+        return new List<Customer>() { new Customer() { Id = guid, Role = Role.Regular } };
     }
     public async Task<List<Customer>> GetCustomersForUpdateBySumTransactionAsync()
     {
