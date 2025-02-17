@@ -1,28 +1,26 @@
 ﻿using CustomersRoleUpdater.Application.Interfaces;
 using CustomersRoleUpdater.Application.Models;
-using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
 using Moq;
 using Moq.Protected;
-using System;
 using System.Net;
 using System.Text.Json;
 
 namespace CustomersRoleUpdater.Application.Tests;
 
-public class CustomerDataServiceTest
+public class CustomersDataServiceTest
 {
-    private ICustomerDataService _sut;
+    private ICustomersDataService _sut;
     private Mock<HttpMessageHandler> _messageHandlerMock;
     private string _baseAddress = "https://github.com/";
 
-    public CustomerDataServiceTest()
+    public CustomersDataServiceTest()
     {
         _messageHandlerMock = new Mock<HttpMessageHandler>();
         _sut = new CustomersDataService(_messageHandlerMock.Object);
     }
 
     [Fact]
-    public async Task GetCustomersForUpdateByCountTransactionAsync_callMethod_getCustomersSuccess()
+    public async Task GetCustomersForUpdateByCountTransactionAsync_CallMethod_GetCustomersSuccess()
     {
         // arrange
         var apiEndpoint = $"count";

@@ -4,7 +4,7 @@ using CustomersRoleUpdater.Application.Integrations;
 
 namespace CustomersRoleUpdater.Application;
 
-public class CustomersDataService : ICustomerDataService
+public class CustomersDataService : ICustomersDataService
 {
     private readonly CommonHttpClient _httpClient;
     private readonly string _baseUrl = "https://github.com/";
@@ -24,18 +24,18 @@ public class CustomersDataService : ICustomerDataService
             ["count"] = "42",
         };
 
-        //var resultQuery = RequestUriUtil.GetUriWithQueryString(query);
-        //return await _httpClient.GetRequest<List<Customer>>($"/birthday/{resultQuery}");
-        return new List<Customer>() {new Customer(){ Id = guid, Role=Role.Regular}};
+        var resultQuery = RequestUriUtil.GetUriWithQueryString(query);
+        return await _httpClient.GetRequest<List<Customer>>($"/birthday/{resultQuery}");
+        //return new List<Customer>() {new Customer(){ Id = guid, Role=Role.Regular}};
     }
     public async Task<List<Customer>> GetCustomersForUpdateByCountTransactionAsync()
     {
-        //return await _httpClient.GetRequest<List<Customer>>("count");
+        //return await _httpClient.GetRequest<List<Customer>>?("count");
         return new List<Customer>() { new Customer() { Id = guid, Role = Role.Regular } };
     }
     public async Task<List<Customer>> GetCustomersForUpdateBySumTransactionAsync()
     {
-        //return await _httpClient.GetRequest<List<Customer>>("/sum/");
+        //return await _httpClient.GetRequest<List<Customer>>?("/sum/");
         return new List<Customer>() { new Customer() { Id = guid, Role = Role.Regular } };
     }
 }

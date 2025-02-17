@@ -43,7 +43,7 @@ public class Program
         builder.Logging.AddConfiguration();
         builder.Configuration.GetSection("Logging");
 
-        builder.Services.AddSingleton<ICustomerDataService, CustomersDataService>();
+        builder.Services.AddSingleton<ICustomersDataService, CustomersDataService>();
         builder.Services.AddSingleton<ICustomersStatusUpdater, CustomersStatusUpdater>();
 
         builder.Services.AddAutoMapper(typeof(CustomersMapperProfile));

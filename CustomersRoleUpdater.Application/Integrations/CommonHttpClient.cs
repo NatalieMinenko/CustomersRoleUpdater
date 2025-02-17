@@ -31,6 +31,7 @@ internal class CommonHttpClient
         else
         {
             //response.EnsureSuccessStatusCode();
+
             return default(T);
         }
     }

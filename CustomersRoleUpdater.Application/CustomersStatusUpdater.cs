@@ -8,7 +8,7 @@ using static MassTransit.ValidationResultExtensions;
 namespace CustomersRoleUpdater.Application;
 
 public class CustomersStatusUpdater(
-    ICustomerDataService customerDataRequest
+    ICustomersDataService customerDataRequest
     //IMapper mapper
 ) : ICustomersStatusUpdater
 {
