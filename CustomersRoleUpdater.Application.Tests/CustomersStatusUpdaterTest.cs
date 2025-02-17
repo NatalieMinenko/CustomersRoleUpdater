@@ -38,7 +38,6 @@ public class CustomersStatusUpdaterTest
         //customerIds.CustomerIds = _sut.UpdateCustomerRoles(customers);
         // act
         var listId = await _sut.GetAllCustomersAndUpdateRoleAsync();
-        var u = listId;
         //assert
         Assert.IsType<ListCustomerId>(listId);
     }
