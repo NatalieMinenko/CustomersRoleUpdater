@@ -24,9 +24,9 @@ public class CustomersDataService : ICustomerDataService
             ["count"] = "42",
         };
 
-        var resultQuery = RequestUriUtil.GetUriWithQueryString(query);
-        return await _httpClient.GetRequest<List<Customer>>($"/birthday/{resultQuery}");
-        //return new List<Customer>() {new Customer(){ Id = guid, Role=Role.Regular}};
+        //var resultQuery = RequestUriUtil.GetUriWithQueryString(query);
+        //return await _httpClient.GetRequest<List<Customer>>($"/birthday/{resultQuery}");
+        return new List<Customer>() {new Customer(){ Id = guid, Role=Role.Regular}};
     }
     public async Task<List<Customer>> GetCustomersForUpdateByCountTransactionAsync()
     {
