@@ -24,18 +24,13 @@ public class CustomersStatusUpdaterTest
         // arrange
         var customers = new List<Customer>
             { new Customer { Id = Guid.NewGuid(), Role = Role.Regular } };
-        var customersTask = Task.Run(() => null);
+  
         _customersDataService.Setup(t => t.GetCustomersForUpdateBySumTransactionAsync()).
             ReturnsAsync(customers);
         _customersDataService.Setup(t => t.GetCustomersForUpdateByCountTransactionAsync()).
             ReturnsAsync(customers);
         _customersDataService.Setup(t => t.GetCustomersForUpdateByBirhtdayAsync()).
             ReturnsAsync(customers);
-
-        //var massListCustomer = await Task.WhenAll(customersTask, customersTask, customersTask);
-        //var d = _sut.GetCustomersWithoutNull(new List<Customer>[] {new List<Customer>{ null} });
-        //ListCustomerId customerIds = new();
-        //customerIds.CustomerIds = _sut.UpdateCustomerRoles(customers);
         // act
         var listId = await _sut.GetAllCustomersAndUpdateRoleAsync();
         //assert

@@ -1,23 +1,29 @@
 ﻿using CustomersRoleUpdater.Application.Models;
 using CustomersRoleUpdater.Application.Interfaces;
 using CustomersRoleUpdater.Application.Integrations;
+using Microsoft.Extensions.Logging;
 
 namespace CustomersRoleUpdater.Application;
 
-public class CustomersDataService : ICustomersDataService
+public class CustomersDataService(ILogger<CustomersDataService> logger) : ICustomersDataService
 {
     private readonly CommonHttpClient _httpClient;
     private readonly string _baseUrl = "https://github.com/";
 
-    public CustomersDataService(HttpMessageHandler? handler = null)
+    public CustomersDataService(
+        ILogger<CommonHttpClient>clientLogger,
+        ILogger<CustomersDataService> logger,
+        HttpMessageHandler? handler = null 
+        ) : this(logger)
     {
-        _httpClient = new CommonHttpClient(_baseUrl, handler);
+        _httpClient = new CommonHttpClient(clientLogger, _baseUrl, handler);
     }
 
     Guid guid = Guid.NewGuid();
 
     public async Task<List<Customer>>GetCustomersForUpdateByBirhtdayAsync()
     {
+        logger.LogInformation("started query by Birhtday");
         var query = new Dictionary<string, string>()
         {
             ["month"] = "2",

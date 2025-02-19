@@ -41,7 +41,6 @@ public class CustomersDataServiceTest
         });
         // act
         var result = await _sut.GetCustomersForUpdateByCountTransactionAsync();
-        var f = result;
         // assert
         Assert.Equivalent(result, obj);
     }
