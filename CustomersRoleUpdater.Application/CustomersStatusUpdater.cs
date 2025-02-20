@@ -1,24 +1,31 @@
 ﻿using CustomersRoleUpdater.Application.Models;
 using CustomersRoleUpdater.Application.Interfaces;
+using Contract;
 
 namespace CustomersRoleUpdater.Application;
 
-public class CustomersStatusUpdater(ICustomerDataService customerDataRequest) : ICustomersStatusUpdater
+public class CustomersStatusUpdater(
+    ICustomersDataService customerDataRequest
+    //IMapper mapper
+) : ICustomersStatusUpdater
 {
-    public List<Customer> UpdateCustomerRoles(IEnumerable <List<Customer>> customers)
+    private List<Guid> UpdateCustomerRoles(List<Customer>[] customers)
     {
-        return customers.SelectMany(c => c).DistinctBy(p => p.Id).ToList();
+        return customers.SelectMany(c => c).DistinctBy(p => p).Select(p => p.Id).ToList();
     }
-    public async Task GetAllCustomersAndUpdateRoleAsync()
+
+    public async Task<ListCustomerId> GetAllCustomersAndUpdateRoleAsync()
     {
         var task1 = customerDataRequest.GetCustomersForUpdateByBirhtdayAsync();
         var task2 = customerDataRequest.GetCustomersForUpdateByCountTransactionAsync();
         var task3 = customerDataRequest.GetCustomersForUpdateBySumTransactionAsync();
-        var results = await Task.WhenAll(task1, task2, task3);
-        if (results.Length > 0)
-        {
-            var resultCustomers = UpdateCustomerRoles(results);
-        }
+
+        var customers = await Task.WhenAll(task1, task2, task3);
+
+        ListCustomerId customerIds = new();
+        customerIds.CustomerIds = UpdateCustomerRoles(customers);
+
+        return customerIds;
     }
 }
 

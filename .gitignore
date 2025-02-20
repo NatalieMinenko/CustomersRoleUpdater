@@ -5,7 +5,7 @@
 
 # dotenv files
 .env
-
+.txt
 # User-specific files
 *.rsuser
 *.suo
@@ -483,4 +483,3 @@ $RECYCLE.BIN/
 # Vim temporary swap files
 *.swp
 
-CustomersRoleUpdater_log-20250205.txt
