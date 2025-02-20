@@ -1,0 +1,50 @@
+[17-02-2025 14:48:11.804 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/17/2025 14:48:11 +03:00
+[17-02-2025 14:48:12.042 Microsoft.Hosting.Lifetime INF] #: Application started. Press Ctrl+C to shut down.
+[17-02-2025 14:48:12.045 Microsoft.Hosting.Lifetime INF] #: Hosting environment: "Development"
+[17-02-2025 14:48:12.072 Microsoft.Hosting.Lifetime INF] #: Content root path: "C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation"
+[17-02-2025 14:48:13.644 Microsoft.Extensions.Hosting.Internal.Host ERR] #: BackgroundService failed
+System.Net.Http.HttpRequestException: Этот хост неизвестен. (github.com:443)
+ ---> System.Net.Sockets.SocketException (11001): Этот хост неизвестен.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.InjectNewHttp11ConnectionAsync(QueueItem queueItem)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionWaiter`1.WaitForConnectionWithTelemetryAsync(HttpRequestMessage request, HttpConnectionPool pool, Boolean async, CancellationToken requestCancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at CustomersRoleUpdater.Application.Integrations.CommonHttpClient.GetRequest[T](String path) in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\Integrations\CommonHttpClient.cs:line 24
+   at CustomersRoleUpdater.Application.CustomersDataService.GetCustomersForUpdateByBirhtdayAsync() in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\CustomersDataService.cs:line 28
+   at CustomersRoleUpdater.Application.CustomersStatusUpdater.GetAllCustomersAndUpdateRoleAsync() in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\CustomersStatusUpdater.cs:line 31
+   at WorkerService.Presentation.Worker.ExecuteAsync(CancellationToken stoppingToken) in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation\Worker.cs:line 20
+   at Microsoft.Extensions.Hosting.Internal.Host.TryExecuteBackgroundServiceAsync(BackgroundService backgroundService)
+[17-02-2025 14:48:13.687 Microsoft.Extensions.Hosting.Internal.Host FTL] #: The HostOptions.BackgroundServiceExceptionBehavior is configured to StopHost. A BackgroundService has thrown an unhandled exception, and the IHost instance is stopping. To avoid this behavior, configure this to Ignore; however the BackgroundService will not be restarted.
+System.Net.Http.HttpRequestException: Этот хост неизвестен. (github.com:443)
+ ---> System.Net.Sockets.SocketException (11001): Этот хост неизвестен.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.InjectNewHttp11ConnectionAsync(QueueItem queueItem)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionWaiter`1.WaitForConnectionWithTelemetryAsync(HttpRequestMessage request, HttpConnectionPool pool, Boolean async, CancellationToken requestCancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at CustomersRoleUpdater.Application.Integrations.CommonHttpClient.GetRequest[T](String path) in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\Integrations\CommonHttpClient.cs:line 24
+   at CustomersRoleUpdater.Application.CustomersDataService.GetCustomersForUpdateByBirhtdayAsync() in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\CustomersDataService.cs:line 28
+   at CustomersRoleUpdater.Application.CustomersStatusUpdater.GetAllCustomersAndUpdateRoleAsync() in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\CustomersStatusUpdater.cs:line 31
+   at WorkerService.Presentation.Worker.ExecuteAsync(CancellationToken stoppingToken) in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation\Worker.cs:line 20
+   at Microsoft.Extensions.Hosting.Internal.Host.TryExecuteBackgroundServiceAsync(BackgroundService backgroundService)
+[17-02-2025 14:48:13.701 Microsoft.Hosting.Lifetime INF] #: Application is shutting down...
+[17-02-2025 14:48:13.710 MassTransit WRN] #: Failed to stop bus: rabbitmq://localhost/HP_CustomersRoleUpdaterPresentation_bus_zbbyyydz4f8pkcx4bdqw618wrp?temporary=true ("Not Started")
