@@ -7,8 +7,8 @@ namespace CustomersRoleUpdater.Application;
 
 public class CustomersDataService(ILogger<CustomersDataService> logger) : ICustomersDataService
 {
-    private readonly CommonHttpClient _httpClient;
-    private readonly string _baseUrl = "https://github.com/";
+    private readonly CommonHttpClient? _httpClient;
+    private readonly string _baseUrl = "https://localhost:7083/api/customers/";
 
     public CustomersDataService(
         ILogger<CommonHttpClient>clientLogger,
@@ -24,25 +24,29 @@ public class CustomersDataService(ILogger<CustomersDataService> logger) : ICusto
     public async Task<List<Customer>>GetCustomersForUpdateByBirhtdayAsync()
     {
         logger.LogInformation("started query by Birhtday");
+
+        var date = new DateTime(2010, 6, 1);
+        var datePlus = new DateTime(2010, 6, 1);// date.AddDays(100);
         var query = new Dictionary<string, string>()
         {
-            ["month"] = "2",
-            ["count"] = "42",
+            ["DateStart"] = $"{date}",
+            ["DateEnd"] = $"{datePlus}",
         };
 
         var resultQuery = RequestUriUtil.GetUriWithQueryString(query);
-        return await _httpClient.GetRequest<List<Customer>>($"/birthday/{resultQuery}");
+        var r = resultQuery;
+        return await _httpClient.GetRequest<List<Customer>>($"birth-date{resultQuery}");
         //return new List<Customer>() {new Customer(){ Id = guid, Role=Role.Regular}};
     }
     public async Task<List<Customer>> GetCustomersForUpdateByCountTransactionAsync()
     {
-        //return await _httpClient.GetRequest<List<Customer>>?("count");
-        return new List<Customer>() { new Customer() { Id = guid, Role = Role.Regular } };
+        return await _httpClient.GetRequest<List<Customer>>("count");
+        //return new List<Customer>() { new Customer() { } };
     }
     public async Task<List<Customer>> GetCustomersForUpdateBySumTransactionAsync()
     {
         //return await _httpClient.GetRequest<List<Customer>>?("/sum/");
-        return new List<Customer>() { new Customer() { Id = guid, Role = Role.Regular } };
+        return new List<Customer>() { new Customer() {  } };
     }
 }
 

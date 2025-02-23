@@ -25,6 +25,7 @@ public class CommonHttpClient
     public async Task<T?> GetRequest<T>(string path)
     {
         var response = await _httpClient.GetAsync(path);
+        var g = response;
         if (!response.IsSuccessStatusCode)
             _logger.LogError($"api error: {(int)response.StatusCode}-{response.ReasonPhrase}");
         response.EnsureSuccessStatusCode();

@@ -6,7 +6,6 @@ namespace CustomersRoleUpdater.Application;
 
 public class CustomersStatusUpdater(
     ICustomersDataService customerDataRequest
-    //IMapper mapper
 ) : ICustomersStatusUpdater
 {
     private List<Guid> UpdateCustomerRoles(List<Customer>[] customers)

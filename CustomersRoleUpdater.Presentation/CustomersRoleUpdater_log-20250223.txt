@@ -1,0 +1,565 @@
+[23-02-2025 11:48:19.261 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/23/2025 11:48:19 +03:00
+[23-02-2025 11:48:19.353 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday
+[23-02-2025 11:48:19.463 Microsoft.Hosting.Lifetime INF] #: Application started. Press Ctrl+C to shut down.
+[23-02-2025 11:48:19.466 Microsoft.Hosting.Lifetime INF] #: Hosting environment: "Development"
+[23-02-2025 11:48:19.470 Microsoft.Hosting.Lifetime INF] #: Content root path: "C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation"
+[23-02-2025 11:48:24.493 MassTransit WRN] #: Connection Failed: rabbitmq://localhost/
+RabbitMQ.Client.Exceptions.BrokerUnreachableException: None of the specified endpoints were reachable
+ ---> System.AggregateException: One or more errors occurred. (Connection failed, host 127.0.0.1:5672)
+ ---> RabbitMQ.Client.Exceptions.ConnectFailureException: Connection failed, host 127.0.0.1:5672
+ ---> System.Net.Sockets.SocketException (10061): Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+   at RabbitMQ.Client.Impl.SocketFactory.ConnectUsingAddressFamilyAsync(IPEndPoint endpoint, Func`2 socketFactory, AddressFamily family, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.Impl.SocketFactory.ConnectUsingAddressFamilyAsync(IPEndPoint endpoint, Func`2 socketFactory, AddressFamily family, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+   at RabbitMQ.Client.Impl.SocketFactory.OpenAsync(AmqpTcpEndpoint amqpTcpEndpoint, Func`2 socketFactory, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.CreateAsync(AmqpTcpEndpoint amqpTcpEndpoint, Func`2 socketFactory, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+   at RabbitMQ.Client.ConnectionFactory.CreateFrameHandlerAsync(AmqpTcpEndpoint endpoint, CancellationToken cancellationToken)
+   at RabbitMQ.Client.EndpointResolverExtensions.SelectOneAsync[T](IEndpointResolver resolver, Func`3 selector, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.EndpointResolverExtensions.SelectOneAsync[T](IEndpointResolver resolver, Func`3 selector, CancellationToken cancellationToken)
+   at RabbitMQ.Client.ConnectionFactory.CreateConnectionAsync(IEndpointResolver endpointResolver, String clientProvidedName, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.ConnectionFactory.CreateConnectionAsync(IEndpointResolver endpointResolver, String clientProvidedName, CancellationToken cancellationToken)
+   at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateConnection(ISupervisor supervisor) in /_/src/Transports/MassTransit.RabbitMqTransport/RabbitMqTransport/ConnectionContextFactory.cs:line 101
+[23-02-2025 11:48:24.879 WorkerService.Presentation.Worker ERR] #: "Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение. (localhost:7083)"
+System.Net.Http.HttpRequestException: Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение. (localhost:7083)
+ ---> System.Net.Sockets.SocketException (10061): Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.InjectNewHttp11ConnectionAsync(QueueItem queueItem)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionWaiter`1.WaitForConnectionWithTelemetryAsync(HttpRequestMessage request, HttpConnectionPool pool, Boolean async, CancellationToken requestCancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at CustomersRoleUpdater.Application.Integrations.CommonHttpClient.GetRequest[T](String path) in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\Integrations\CommonHttpClient.cs:line 27
+   at CustomersRoleUpdater.Application.CustomersDataService.GetCustomersForUpdateByBirhtdayAsync() in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\CustomersDataService.cs:line 36
+   at CustomersRoleUpdater.Application.CustomersStatusUpdater.GetAllCustomersAndUpdateRoleAsync() in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\CustomersStatusUpdater.cs:line 23
+   at WorkerService.Presentation.Worker.ExecuteAsync(CancellationToken stoppingToken) in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation\Worker.cs:line 22
+[23-02-2025 11:48:27.185 MassTransit INF] #: Retrying 00:00:05.9490000: "Broker unreachable: guest@localhost:5672/"
+MassTransit.RabbitMqConnectionException: Broker unreachable: guest@localhost:5672/
+ ---> RabbitMQ.Client.Exceptions.BrokerUnreachableException: None of the specified endpoints were reachable
+ ---> System.AggregateException: One or more errors occurred. (Connection failed, host 127.0.0.1:5672)
+ ---> RabbitMQ.Client.Exceptions.ConnectFailureException: Connection failed, host 127.0.0.1:5672
+ ---> System.Net.Sockets.SocketException (10061): Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+   at RabbitMQ.Client.Impl.SocketFactory.ConnectUsingAddressFamilyAsync(IPEndPoint endpoint, Func`2 socketFactory, AddressFamily family, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.Impl.SocketFactory.ConnectUsingAddressFamilyAsync(IPEndPoint endpoint, Func`2 socketFactory, AddressFamily family, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+   at RabbitMQ.Client.Impl.SocketFactory.OpenAsync(AmqpTcpEndpoint amqpTcpEndpoint, Func`2 socketFactory, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.CreateAsync(AmqpTcpEndpoint amqpTcpEndpoint, Func`2 socketFactory, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+   at RabbitMQ.Client.ConnectionFactory.CreateFrameHandlerAsync(AmqpTcpEndpoint endpoint, CancellationToken cancellationToken)
+   at RabbitMQ.Client.EndpointResolverExtensions.SelectOneAsync[T](IEndpointResolver resolver, Func`3 selector, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.EndpointResolverExtensions.SelectOneAsync[T](IEndpointResolver resolver, Func`3 selector, CancellationToken cancellationToken)
+   at RabbitMQ.Client.ConnectionFactory.CreateConnectionAsync(IEndpointResolver endpointResolver, String clientProvidedName, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.ConnectionFactory.CreateConnectionAsync(IEndpointResolver endpointResolver, String clientProvidedName, CancellationToken cancellationToken)
+   at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateConnection(ISupervisor supervisor) in /_/src/Transports/MassTransit.RabbitMqTransport/RabbitMqTransport/ConnectionContextFactory.cs:line 101
+   --- End of inner exception stack trace ---
+   at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateConnection(ISupervisor supervisor) in /_/src/Transports/MassTransit.RabbitMqTransport/RabbitMqTransport/ConnectionContextFactory.cs:line 128
+   at MassTransit.Internals.TaskExtensions.<>c__DisplayClass2_0`1.<<OrCanceled>g__WaitAsync|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at MassTransit.Internals.TaskExtensions.<>c__DisplayClass2_0`1.<<OrCanceled>g__WaitAsync|0>d.MoveNext() in /_/src/MassTransit.Abstractions/Internals/Extensions/TaskExtensions.cs:line 72
+--- End of stack trace from previous location ---
+   at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateSharedConnection(Task`1 context, CancellationToken cancellationToken) in /_/src/Transports/MassTransit.RabbitMqTransport/RabbitMqTransport/ConnectionContextFactory.cs:line 73
+   at MassTransit.Agents.PipeContextSupervisor`1.Send(IPipe`1 pipe, CancellationToken cancellationToken) in /_/src/MassTransit/Agents/PipeContextSupervisor.cs:line 51
+   at MassTransit.Agents.PipeContextSupervisor`1.Send(IPipe`1 pipe, CancellationToken cancellationToken) in /_/src/MassTransit/Agents/PipeContextSupervisor.cs:line 61
+   at MassTransit.Agents.PipeContextSupervisor`1.Send(IPipe`1 pipe, CancellationToken cancellationToken) in /_/src/MassTransit/Agents/PipeContextSupervisor.cs:line 67
+   at MassTransit.SupervisorExtensions.<>c__DisplayClass5_0`2.<<CreateAgent>g__HandleSupervisorTask|0>d.MoveNext() in /_/src/MassTransit/SupervisorExtensions.cs:line 139
+   at MassTransit.Agents.PipeContextSupervisor`1.Send(IPipe`1 pipe, CancellationToken cancellationToken) in /_/src/MassTransit/Agents/PipeContextSupervisor.cs:line 51
+   at MassTransit.SupervisorExtensions.CreateAgent[T,TAgent](ISupervisor`1 supervisor, IAsyncPipeContextAgent`1 asyncContext, Func`3 agentFactory, CancellationToken cancellationToken) in /_/src/MassTransit/SupervisorExtensions.cs:line 158
+   at MassTransit.Agents.PipeContextSupervisor`1.Send(IPipe`1 pipe, CancellationToken cancellationToken) in /_/src/MassTransit/Agents/PipeContextSupervisor.cs:line 61
+   at MassTransit.Agents.PipeContextSupervisor`1.Send(IPipe`1 pipe, CancellationToken cancellationToken) in /_/src/MassTransit/Agents/PipeContextSupervisor.cs:line 67
+   at MassTransit.Transports.TransportStartExtensions.OnTransportStartup[T](ReceiveEndpointContext context, ITransportSupervisor`1 supervisor, CancellationToken cancellationToken) in /_/src/MassTransit/Transports/TransportStartExtensions.cs:line 19
+   at MassTransit.Transports.ReceiveTransport`1.ReceiveTransportAgent.RunTransport() in /_/src/MassTransit/Transports/ReceiveTransport.cs:line 202
+   at MassTransit.Transports.ReceiveTransport`1.ReceiveTransportAgent.RunTransport() in /_/src/MassTransit/Transports/ReceiveTransport.cs:line 210
+   at MassTransit.Transports.ReceiveTransport`1.ReceiveTransportAgent.Run() in /_/src/MassTransit/Transports/ReceiveTransport.cs:line 145
+[23-02-2025 11:48:31.601 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/23/2025 11:48:31 +03:00
+[23-02-2025 11:48:31.604 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday
+[23-02-2025 11:48:36.283 WorkerService.Presentation.Worker ERR] #: "Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение. (localhost:7083)"
+System.Net.Http.HttpRequestException: Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение. (localhost:7083)
+ ---> System.Net.Sockets.SocketException (10061): Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.InjectNewHttp11ConnectionAsync(QueueItem queueItem)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionWaiter`1.WaitForConnectionWithTelemetryAsync(HttpRequestMessage request, HttpConnectionPool pool, Boolean async, CancellationToken requestCancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at CustomersRoleUpdater.Application.Integrations.CommonHttpClient.GetRequest[T](String path) in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\Integrations\CommonHttpClient.cs:line 27
+   at CustomersRoleUpdater.Application.CustomersDataService.GetCustomersForUpdateByBirhtdayAsync() in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\CustomersDataService.cs:line 36
+   at CustomersRoleUpdater.Application.CustomersStatusUpdater.GetAllCustomersAndUpdateRoleAsync() in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\CustomersStatusUpdater.cs:line 23
+   at WorkerService.Presentation.Worker.ExecuteAsync(CancellationToken stoppingToken) in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation\Worker.cs:line 22
+[23-02-2025 11:48:37.716 MassTransit WRN] #: Connection Failed: rabbitmq://localhost/
+RabbitMQ.Client.Exceptions.BrokerUnreachableException: None of the specified endpoints were reachable
+ ---> System.AggregateException: One or more errors occurred. (Connection failed, host 127.0.0.1:5672)
+ ---> RabbitMQ.Client.Exceptions.ConnectFailureException: Connection failed, host 127.0.0.1:5672
+ ---> System.Net.Sockets.SocketException (10061): Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+   at RabbitMQ.Client.Impl.SocketFactory.ConnectUsingAddressFamilyAsync(IPEndPoint endpoint, Func`2 socketFactory, AddressFamily family, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.Impl.SocketFactory.ConnectUsingAddressFamilyAsync(IPEndPoint endpoint, Func`2 socketFactory, AddressFamily family, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+   at RabbitMQ.Client.Impl.SocketFactory.OpenAsync(AmqpTcpEndpoint amqpTcpEndpoint, Func`2 socketFactory, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.CreateAsync(AmqpTcpEndpoint amqpTcpEndpoint, Func`2 socketFactory, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+   at RabbitMQ.Client.ConnectionFactory.CreateFrameHandlerAsync(AmqpTcpEndpoint endpoint, CancellationToken cancellationToken)
+   at RabbitMQ.Client.EndpointResolverExtensions.SelectOneAsync[T](IEndpointResolver resolver, Func`3 selector, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.EndpointResolverExtensions.SelectOneAsync[T](IEndpointResolver resolver, Func`3 selector, CancellationToken cancellationToken)
+   at RabbitMQ.Client.ConnectionFactory.CreateConnectionAsync(IEndpointResolver endpointResolver, String clientProvidedName, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.ConnectionFactory.CreateConnectionAsync(IEndpointResolver endpointResolver, String clientProvidedName, CancellationToken cancellationToken)
+   at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateConnection(ISupervisor supervisor) in /_/src/Transports/MassTransit.RabbitMqTransport/RabbitMqTransport/ConnectionContextFactory.cs:line 101
+[23-02-2025 11:48:39.830 MassTransit INF] #: Retrying 00:00:08.8160000: "Broker unreachable: guest@localhost:5672/"
+MassTransit.RabbitMqConnectionException: Broker unreachable: guest@localhost:5672/
+ ---> RabbitMQ.Client.Exceptions.BrokerUnreachableException: None of the specified endpoints were reachable
+ ---> System.AggregateException: One or more errors occurred. (Connection failed, host 127.0.0.1:5672)
+ ---> RabbitMQ.Client.Exceptions.ConnectFailureException: Connection failed, host 127.0.0.1:5672
+ ---> System.Net.Sockets.SocketException (10061): Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+   at RabbitMQ.Client.Impl.SocketFactory.ConnectUsingAddressFamilyAsync(IPEndPoint endpoint, Func`2 socketFactory, AddressFamily family, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.Impl.SocketFactory.ConnectUsingAddressFamilyAsync(IPEndPoint endpoint, Func`2 socketFactory, AddressFamily family, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+   at RabbitMQ.Client.Impl.SocketFactory.OpenAsync(AmqpTcpEndpoint amqpTcpEndpoint, Func`2 socketFactory, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.CreateAsync(AmqpTcpEndpoint amqpTcpEndpoint, Func`2 socketFactory, TimeSpan connectionTimeout, CancellationToken cancellationToken)
+   at RabbitMQ.Client.ConnectionFactory.CreateFrameHandlerAsync(AmqpTcpEndpoint endpoint, CancellationToken cancellationToken)
+   at RabbitMQ.Client.EndpointResolverExtensions.SelectOneAsync[T](IEndpointResolver resolver, Func`3 selector, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.EndpointResolverExtensions.SelectOneAsync[T](IEndpointResolver resolver, Func`3 selector, CancellationToken cancellationToken)
+   at RabbitMQ.Client.ConnectionFactory.CreateConnectionAsync(IEndpointResolver endpointResolver, String clientProvidedName, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.ConnectionFactory.CreateConnectionAsync(IEndpointResolver endpointResolver, String clientProvidedName, CancellationToken cancellationToken)
+   at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateConnection(ISupervisor supervisor) in /_/src/Transports/MassTransit.RabbitMqTransport/RabbitMqTransport/ConnectionContextFactory.cs:line 101
+   --- End of inner exception stack trace ---
+   at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateConnection(ISupervisor supervisor) in /_/src/Transports/MassTransit.RabbitMqTransport/RabbitMqTransport/ConnectionContextFactory.cs:line 128
+   at MassTransit.Internals.TaskExtensions.<>c__DisplayClass2_0`1.<<OrCanceled>g__WaitAsync|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at MassTransit.Internals.TaskExtensions.<>c__DisplayClass2_0`1.<<OrCanceled>g__WaitAsync|0>d.MoveNext() in /_/src/MassTransit.Abstractions/Internals/Extensions/TaskExtensions.cs:line 72
+--- End of stack trace from previous location ---
+   at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateSharedConnection(Task`1 context, CancellationToken cancellationToken) in /_/src/Transports/MassTransit.RabbitMqTransport/RabbitMqTransport/ConnectionContextFactory.cs:line 73
+   at MassTransit.Agents.PipeContextSupervisor`1.Send(IPipe`1 pipe, CancellationToken cancellationToken) in /_/src/MassTransit/Agents/PipeContextSupervisor.cs:line 51
+   at MassTransit.Agents.PipeContextSupervisor`1.Send(IPipe`1 pipe, CancellationToken cancellationToken) in /_/src/MassTransit/Agents/PipeContextSupervisor.cs:line 61
+   at MassTransit.Agents.PipeContextSupervisor`1.Send(IPipe`1 pipe, CancellationToken cancellationToken) in /_/src/MassTransit/Agents/PipeContextSupervisor.cs:line 67
+   at MassTransit.SupervisorExtensions.<>c__DisplayClass5_0`2.<<CreateAgent>g__HandleSupervisorTask|0>d.MoveNext() in /_/src/MassTransit/SupervisorExtensions.cs:line 139
+   at MassTransit.Agents.PipeContextSupervisor`1.Send(IPipe`1 pipe, CancellationToken cancellationToken) in /_/src/MassTransit/Agents/PipeContextSupervisor.cs:line 51
+   at MassTransit.SupervisorExtensions.CreateAgent[T,TAgent](ISupervisor`1 supervisor, IAsyncPipeContextAgent`1 asyncContext, Func`3 agentFactory, CancellationToken cancellationToken) in /_/src/MassTransit/SupervisorExtensions.cs:line 158
+   at MassTransit.Agents.PipeContextSupervisor`1.Send(IPipe`1 pipe, CancellationToken cancellationToken) in /_/src/MassTransit/Agents/PipeContextSupervisor.cs:line 61
+   at MassTransit.Agents.PipeContextSupervisor`1.Send(IPipe`1 pipe, CancellationToken cancellationToken) in /_/src/MassTransit/Agents/PipeContextSupervisor.cs:line 67
+   at MassTransit.Transports.TransportStartExtensions.OnTransportStartup[T](ReceiveEndpointContext context, ITransportSupervisor`1 supervisor, CancellationToken cancellationToken) in /_/src/MassTransit/Transports/TransportStartExtensions.cs:line 19
+   at MassTransit.Transports.ReceiveTransport`1.ReceiveTransportAgent.RunTransport() in /_/src/MassTransit/Transports/ReceiveTransport.cs:line 202
+   at MassTransit.Transports.ReceiveTransport`1.ReceiveTransportAgent.RunTransport() in /_/src/MassTransit/Transports/ReceiveTransport.cs:line 210
+   at MassTransit.Transports.ReceiveTransport`1.ReceiveTransportAgent.Run() in /_/src/MassTransit/Transports/ReceiveTransport.cs:line 145
+[23-02-2025 11:48:42.298 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/23/2025 11:48:42 +03:00
+[23-02-2025 11:48:42.301 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday
+[23-02-2025 11:48:46.952 WorkerService.Presentation.Worker ERR] #: "Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение. (localhost:7083)"
+System.Net.Http.HttpRequestException: Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение. (localhost:7083)
+ ---> System.Net.Sockets.SocketException (10061): Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.InjectNewHttp11ConnectionAsync(QueueItem queueItem)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionWaiter`1.WaitForConnectionWithTelemetryAsync(HttpRequestMessage request, HttpConnectionPool pool, Boolean async, CancellationToken requestCancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at CustomersRoleUpdater.Application.Integrations.CommonHttpClient.GetRequest[T](String path) in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\Integrations\CommonHttpClient.cs:line 27
+   at CustomersRoleUpdater.Application.CustomersDataService.GetCustomersForUpdateByBirhtdayAsync() in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\CustomersDataService.cs:line 36
+   at CustomersRoleUpdater.Application.CustomersStatusUpdater.GetAllCustomersAndUpdateRoleAsync() in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\CustomersStatusUpdater.cs:line 23
+   at WorkerService.Presentation.Worker.ExecuteAsync(CancellationToken stoppingToken) in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation\Worker.cs:line 22
+[23-02-2025 11:53:58.971 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/23/2025 11:53:58 +03:00
+[23-02-2025 11:53:59.033 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday
+[23-02-2025 11:53:59.161 Microsoft.Hosting.Lifetime INF] #: Application started. Press Ctrl+C to shut down.
+[23-02-2025 11:53:59.162 Microsoft.Hosting.Lifetime INF] #: Hosting environment: "Development"
+[23-02-2025 11:53:59.164 Microsoft.Hosting.Lifetime INF] #: Content root path: "C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation"
+[23-02-2025 11:53:59.227 MassTransit INF] #: Bus started: rabbitmq://localhost/
+[23-02-2025 12:06:19.124 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/23/2025 12:06:19 +03:00
+[23-02-2025 12:06:19.235 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday
+[23-02-2025 12:06:19.366 Microsoft.Hosting.Lifetime INF] #: Application started. Press Ctrl+C to shut down.
+[23-02-2025 12:06:19.395 Microsoft.Hosting.Lifetime INF] #: Hosting environment: "Development"
+[23-02-2025 12:06:19.396 Microsoft.Hosting.Lifetime INF] #: Content root path: "C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation"
+[23-02-2025 12:06:19.460 MassTransit INF] #: Bus started: rabbitmq://localhost/
+[23-02-2025 12:07:12.820 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/23/2025 12:07:12 +03:00
+[23-02-2025 12:07:12.906 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday
+[23-02-2025 12:07:52.412 MassTransit WRN] #: Connection Failed: rabbitmq://localhost/
+RabbitMQ.Client.Exceptions.BrokerUnreachableException: None of the specified endpoints were reachable
+ ---> System.IO.IOException: connection.start was never received, likely due to a network timeout
+ ---> System.IO.IOException: Unable to read data from the transport connection: Программа на вашем хост-компьютере разорвала установленное подключение..
+ ---> System.Net.Sockets.SocketException (10053): Программа на вашем хост-компьютере разорвала установленное подключение.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.CreateException(SocketError error, Boolean forAsyncThrow)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ReceiveAsync(Socket socket, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.ReceiveAsync(Memory`1 buffer, SocketFlags socketFlags, Boolean fromNetworkStream, CancellationToken cancellationToken)
+   at System.Net.Sockets.NetworkStream.ReadAsync(Memory`1 buffer, CancellationToken cancellationToken)
+   at System.IO.Pipelines.StreamPipeReader.<ReadInternalAsync>g__Core|40_0(StreamPipeReader reader, Nullable`1 minimumSize, CancellationTokenSource tokenSource, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at System.IO.Pipelines.StreamPipeReader.<ReadInternalAsync>g__Core|40_0(StreamPipeReader reader, Nullable`1 minimumSize, CancellationTokenSource tokenSource, CancellationToken cancellationToken)
+   at System.IO.Pipelines.StreamPipeReader.ReadInternalAsync(Nullable`1 minimumSize, CancellationToken cancellationToken)
+   at System.IO.Pipelines.StreamPipeReader.ReadAsync(CancellationToken cancellationToken)
+   at RabbitMQ.Client.Impl.InboundFrame.ReadFromPipeAsync(PipeReader reader, UInt32 maxInboundMessageBodySize, InboundFrame frame, CancellationToken mainLoopCancellationToken)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at RabbitMQ.Client.Impl.InboundFrame.ReadFromPipeAsync(PipeReader reader, UInt32 maxInboundMessageBodySize, InboundFrame frame, CancellationToken mainLoopCancellationToken)
+   at RabbitMQ.Client.Impl.SocketFrameHandler.ReadFrameAsync(InboundFrame frame, CancellationToken mainLoopCancellationToken)
+   at RabbitMQ.Client.Framing.Connection.ReceiveLoopAsync(CancellationToken mainLoopCancellationToken)
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at RabbitMQ.Client.Framing.Connection.ReceiveLoopAsync(CancellationToken mainLoopCancellationToken)
+   at RabbitMQ.Client.Framing.Connection.MainLoop()
+   at System.Runtime.CompilerServices.AsyncMethodBuilderCore.Start[TStateMachine](TStateMachine& stateMachine)
+   at RabbitMQ.Client.Framing.Connection.MainLoop()
+   at System.Threading.Tasks.Task`1.InnerInvoke()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+   at System.Threading.ThreadPoolWorkQueue.Dispatch()
+   at System.Threading.PortableThreadPool.WorkerThread.WorkerThreadStart()
+--- End of stack trace from previous location ---
+
+   --- End of inner exception stack trace ---
+   at System.IO.Pipelines.StreamPipeReader.<ReadInternalAsync>g__Core|40_0(StreamPipeReader reader, Nullable`1 minimumSize, CancellationTokenSource tokenSource, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at RabbitMQ.Client.Impl.InboundFrame.ReadFromPipeAsync(PipeReader reader, UInt32 maxInboundMessageBodySize, InboundFrame frame, CancellationToken mainLoopCancellationToken)
+   at RabbitMQ.Client.Framing.Connection.ReceiveLoopAsync(CancellationToken mainLoopCancellationToken)
+   at RabbitMQ.Client.Framing.Connection.MainLoop()
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.Framing.Connection.StartAndTuneAsync(CancellationToken cancellationToken)
+   at RabbitMQ.Client.Framing.Connection.OpenAsync(CancellationToken cancellationToken)
+   at RabbitMQ.Client.Framing.Connection.OpenAsync(CancellationToken cancellationToken)
+   at RabbitMQ.Client.ConnectionFactory.CreateConnectionAsync(IEndpointResolver endpointResolver, String clientProvidedName, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at RabbitMQ.Client.ConnectionFactory.CreateConnectionAsync(IEndpointResolver endpointResolver, String clientProvidedName, CancellationToken cancellationToken)
+   at MassTransit.RabbitMqTransport.ConnectionContextFactory.CreateConnection(ISupervisor supervisor) in /_/src/Transports/MassTransit.RabbitMqTransport/RabbitMqTransport/ConnectionContextFactory.cs:line 101
+[23-02-2025 12:07:52.501 Microsoft.Hosting.Lifetime INF] #: Application started. Press Ctrl+C to shut down.
+[23-02-2025 12:07:52.515 Microsoft.Hosting.Lifetime INF] #: Hosting environment: "Development"
+[23-02-2025 12:07:52.686 Microsoft.Hosting.Lifetime INF] #: Content root path: "C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation"
+[23-02-2025 12:08:29.287 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/23/2025 12:08:29 +03:00
+[23-02-2025 12:08:29.365 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday
+[23-02-2025 12:08:39.522 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/23/2025 12:08:39 +03:00
+[23-02-2025 12:08:39.617 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday
+[23-02-2025 12:09:53.413 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/23/2025 12:09:53 +03:00
+[23-02-2025 12:09:53.478 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday
+[23-02-2025 12:12:19.871 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/23/2025 12:12:19 +03:00
+[23-02-2025 12:12:19.947 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday
+[23-02-2025 12:14:39.141 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/23/2025 12:14:39 +03:00
+[23-02-2025 12:14:39.223 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday
+[23-02-2025 12:14:39.295 Microsoft.Hosting.Lifetime INF] #: Application started. Press Ctrl+C to shut down.
+[23-02-2025 12:14:39.298 Microsoft.Hosting.Lifetime INF] #: Hosting environment: "Development"
+[23-02-2025 12:14:39.300 Microsoft.Hosting.Lifetime INF] #: Content root path: "C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation"
+[23-02-2025 12:14:39.374 MassTransit INF] #: Bus started: rabbitmq://localhost/
+[23-02-2025 12:14:44.100 WorkerService.Presentation.Worker ERR] #: "Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение. (localhost:7083)"
+System.Net.Http.HttpRequestException: Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение. (localhost:7083)
+ ---> System.Net.Sockets.SocketException (10061): Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.InjectNewHttp11ConnectionAsync(QueueItem queueItem)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionWaiter`1.WaitForConnectionWithTelemetryAsync(HttpRequestMessage request, HttpConnectionPool pool, Boolean async, CancellationToken requestCancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at CustomersRoleUpdater.Application.Integrations.CommonHttpClient.GetRequest[T](String path) in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\Integrations\CommonHttpClient.cs:line 27
+   at CustomersRoleUpdater.Application.CustomersDataService.GetCustomersForUpdateByBirhtdayAsync() in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\CustomersDataService.cs:line 38
+   at CustomersRoleUpdater.Application.CustomersStatusUpdater.GetAllCustomersAndUpdateRoleAsync() in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\CustomersStatusUpdater.cs:line 23
+   at WorkerService.Presentation.Worker.ExecuteAsync(CancellationToken stoppingToken) in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation\Worker.cs:line 22
+[23-02-2025 12:14:50.144 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/23/2025 12:14:50 +03:00
+[23-02-2025 12:14:50.146 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday
+[23-02-2025 12:14:54.927 WorkerService.Presentation.Worker ERR] #: "Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение. (localhost:7083)"
+System.Net.Http.HttpRequestException: Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение. (localhost:7083)
+ ---> System.Net.Sockets.SocketException (10061): Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.InjectNewHttp11ConnectionAsync(QueueItem queueItem)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionWaiter`1.WaitForConnectionWithTelemetryAsync(HttpRequestMessage request, HttpConnectionPool pool, Boolean async, CancellationToken requestCancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at CustomersRoleUpdater.Application.Integrations.CommonHttpClient.GetRequest[T](String path) in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\Integrations\CommonHttpClient.cs:line 27
+   at CustomersRoleUpdater.Application.CustomersDataService.GetCustomersForUpdateByBirhtdayAsync() in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\CustomersDataService.cs:line 38
+   at CustomersRoleUpdater.Application.CustomersStatusUpdater.GetAllCustomersAndUpdateRoleAsync() in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\CustomersStatusUpdater.cs:line 23
+   at WorkerService.Presentation.Worker.ExecuteAsync(CancellationToken stoppingToken) in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation\Worker.cs:line 22
+[23-02-2025 12:15:00.957 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/23/2025 12:15:00 +03:00
+[23-02-2025 12:15:00.959 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday
+[23-02-2025 12:15:05.733 WorkerService.Presentation.Worker ERR] #: "Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение. (localhost:7083)"
+System.Net.Http.HttpRequestException: Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение. (localhost:7083)
+ ---> System.Net.Sockets.SocketException (10061): Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.InjectNewHttp11ConnectionAsync(QueueItem queueItem)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionWaiter`1.WaitForConnectionWithTelemetryAsync(HttpRequestMessage request, HttpConnectionPool pool, Boolean async, CancellationToken requestCancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at CustomersRoleUpdater.Application.Integrations.CommonHttpClient.GetRequest[T](String path) in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\Integrations\CommonHttpClient.cs:line 27
+   at CustomersRoleUpdater.Application.CustomersDataService.GetCustomersForUpdateByBirhtdayAsync() in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\CustomersDataService.cs:line 38
+   at CustomersRoleUpdater.Application.CustomersStatusUpdater.GetAllCustomersAndUpdateRoleAsync() in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\CustomersStatusUpdater.cs:line 23
+   at WorkerService.Presentation.Worker.ExecuteAsync(CancellationToken stoppingToken) in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation\Worker.cs:line 22
+[23-02-2025 12:15:11.752 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/23/2025 12:15:11 +03:00
+[23-02-2025 12:15:11.755 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday
+[23-02-2025 12:15:16.512 WorkerService.Presentation.Worker ERR] #: "Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение. (localhost:7083)"
+System.Net.Http.HttpRequestException: Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение. (localhost:7083)
+ ---> System.Net.Sockets.SocketException (10061): Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.InjectNewHttp11ConnectionAsync(QueueItem queueItem)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionWaiter`1.WaitForConnectionWithTelemetryAsync(HttpRequestMessage request, HttpConnectionPool pool, Boolean async, CancellationToken requestCancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at CustomersRoleUpdater.Application.Integrations.CommonHttpClient.GetRequest[T](String path) in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\Integrations\CommonHttpClient.cs:line 27
+   at CustomersRoleUpdater.Application.CustomersDataService.GetCustomersForUpdateByBirhtdayAsync() in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\CustomersDataService.cs:line 38
+   at CustomersRoleUpdater.Application.CustomersStatusUpdater.GetAllCustomersAndUpdateRoleAsync() in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\CustomersStatusUpdater.cs:line 23
+   at WorkerService.Presentation.Worker.ExecuteAsync(CancellationToken stoppingToken) in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation\Worker.cs:line 22
+[23-02-2025 12:15:22.534 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/23/2025 12:15:22 +03:00
+[23-02-2025 12:15:22.536 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday
+[23-02-2025 12:15:27.256 WorkerService.Presentation.Worker ERR] #: "Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение. (localhost:7083)"
+System.Net.Http.HttpRequestException: Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение. (localhost:7083)
+ ---> System.Net.Sockets.SocketException (10061): Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.InjectNewHttp11ConnectionAsync(QueueItem queueItem)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionWaiter`1.WaitForConnectionWithTelemetryAsync(HttpRequestMessage request, HttpConnectionPool pool, Boolean async, CancellationToken requestCancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at CustomersRoleUpdater.Application.Integrations.CommonHttpClient.GetRequest[T](String path) in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\Integrations\CommonHttpClient.cs:line 27
+   at CustomersRoleUpdater.Application.CustomersDataService.GetCustomersForUpdateByBirhtdayAsync() in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\CustomersDataService.cs:line 38
+   at CustomersRoleUpdater.Application.CustomersStatusUpdater.GetAllCustomersAndUpdateRoleAsync() in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\CustomersStatusUpdater.cs:line 23
+   at WorkerService.Presentation.Worker.ExecuteAsync(CancellationToken stoppingToken) in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation\Worker.cs:line 22
+[23-02-2025 12:15:33.282 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/23/2025 12:15:33 +03:00
+[23-02-2025 12:15:33.285 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday
+[23-02-2025 12:15:38.007 WorkerService.Presentation.Worker ERR] #: "Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение. (localhost:7083)"
+System.Net.Http.HttpRequestException: Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение. (localhost:7083)
+ ---> System.Net.Sockets.SocketException (10061): Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.InjectNewHttp11ConnectionAsync(QueueItem queueItem)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionWaiter`1.WaitForConnectionWithTelemetryAsync(HttpRequestMessage request, HttpConnectionPool pool, Boolean async, CancellationToken requestCancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at CustomersRoleUpdater.Application.Integrations.CommonHttpClient.GetRequest[T](String path) in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\Integrations\CommonHttpClient.cs:line 27
+   at CustomersRoleUpdater.Application.CustomersDataService.GetCustomersForUpdateByBirhtdayAsync() in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\CustomersDataService.cs:line 38
+   at CustomersRoleUpdater.Application.CustomersStatusUpdater.GetAllCustomersAndUpdateRoleAsync() in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\CustomersStatusUpdater.cs:line 23
+   at WorkerService.Presentation.Worker.ExecuteAsync(CancellationToken stoppingToken) in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation\Worker.cs:line 22
+[23-02-2025 12:15:44.026 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/23/2025 12:15:44 +03:00
+[23-02-2025 12:15:44.029 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday
+[23-02-2025 12:15:48.749 WorkerService.Presentation.Worker ERR] #: "Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение. (localhost:7083)"
+System.Net.Http.HttpRequestException: Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение. (localhost:7083)
+ ---> System.Net.Sockets.SocketException (10061): Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.InjectNewHttp11ConnectionAsync(QueueItem queueItem)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionWaiter`1.WaitForConnectionWithTelemetryAsync(HttpRequestMessage request, HttpConnectionPool pool, Boolean async, CancellationToken requestCancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at CustomersRoleUpdater.Application.Integrations.CommonHttpClient.GetRequest[T](String path) in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\Integrations\CommonHttpClient.cs:line 27
+   at CustomersRoleUpdater.Application.CustomersDataService.GetCustomersForUpdateByBirhtdayAsync() in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\CustomersDataService.cs:line 38
+   at CustomersRoleUpdater.Application.CustomersStatusUpdater.GetAllCustomersAndUpdateRoleAsync() in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\CustomersStatusUpdater.cs:line 23
+   at WorkerService.Presentation.Worker.ExecuteAsync(CancellationToken stoppingToken) in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation\Worker.cs:line 22
+[23-02-2025 12:16:00.052 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/23/2025 12:16:00 +03:00
+[23-02-2025 12:16:00.122 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday
+[23-02-2025 12:16:00.229 Microsoft.Hosting.Lifetime INF] #: Application started. Press Ctrl+C to shut down.
+[23-02-2025 12:16:00.230 Microsoft.Hosting.Lifetime INF] #: Hosting environment: "Development"
+[23-02-2025 12:16:00.233 Microsoft.Hosting.Lifetime INF] #: Content root path: "C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation"
+[23-02-2025 12:16:00.310 MassTransit INF] #: Bus started: rabbitmq://localhost/
+[23-02-2025 12:16:05.115 WorkerService.Presentation.Worker ERR] #: "Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение. (localhost:7083)"
+System.Net.Http.HttpRequestException: Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение. (localhost:7083)
+ ---> System.Net.Sockets.SocketException (10061): Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.InjectNewHttp11ConnectionAsync(QueueItem queueItem)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionWaiter`1.WaitForConnectionWithTelemetryAsync(HttpRequestMessage request, HttpConnectionPool pool, Boolean async, CancellationToken requestCancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at CustomersRoleUpdater.Application.Integrations.CommonHttpClient.GetRequest[T](String path) in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\Integrations\CommonHttpClient.cs:line 27
+   at CustomersRoleUpdater.Application.CustomersDataService.GetCustomersForUpdateByBirhtdayAsync() in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\CustomersDataService.cs:line 38
+   at CustomersRoleUpdater.Application.CustomersStatusUpdater.GetAllCustomersAndUpdateRoleAsync() in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\CustomersStatusUpdater.cs:line 23
+   at WorkerService.Presentation.Worker.ExecuteAsync(CancellationToken stoppingToken) in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation\Worker.cs:line 22
+[23-02-2025 12:16:11.136 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/23/2025 12:16:11 +03:00
+[23-02-2025 12:16:11.140 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday
+[23-02-2025 12:16:15.843 WorkerService.Presentation.Worker ERR] #: "Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение. (localhost:7083)"
+System.Net.Http.HttpRequestException: Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение. (localhost:7083)
+ ---> System.Net.Sockets.SocketException (10061): Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|285_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.InjectNewHttp11ConnectionAsync(QueueItem queueItem)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionWaiter`1.WaitForConnectionWithTelemetryAsync(HttpRequestMessage request, HttpConnectionPool pool, Boolean async, CancellationToken requestCancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at CustomersRoleUpdater.Application.Integrations.CommonHttpClient.GetRequest[T](String path) in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\Integrations\CommonHttpClient.cs:line 27
+   at CustomersRoleUpdater.Application.CustomersDataService.GetCustomersForUpdateByBirhtdayAsync() in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\CustomersDataService.cs:line 38
+   at CustomersRoleUpdater.Application.CustomersStatusUpdater.GetAllCustomersAndUpdateRoleAsync() in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\CustomersStatusUpdater.cs:line 23
+   at WorkerService.Presentation.Worker.ExecuteAsync(CancellationToken stoppingToken) in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation\Worker.cs:line 22
+[23-02-2025 12:17:01.796 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/23/2025 12:17:01 +03:00
+[23-02-2025 12:17:01.893 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday
+[23-02-2025 12:17:01.970 Microsoft.Hosting.Lifetime INF] #: Application started. Press Ctrl+C to shut down.
+[23-02-2025 12:17:01.973 Microsoft.Hosting.Lifetime INF] #: Hosting environment: "Development"
+[23-02-2025 12:17:01.976 Microsoft.Hosting.Lifetime INF] #: Content root path: "C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation"
+[23-02-2025 12:17:02.049 MassTransit INF] #: Bus started: rabbitmq://localhost/
+[23-02-2025 12:18:48.020 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/23/2025 12:18:48 +03:00
+[23-02-2025 12:18:48.116 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday
+[23-02-2025 12:18:48.191 Microsoft.Hosting.Lifetime INF] #: Application started. Press Ctrl+C to shut down.
+[23-02-2025 12:18:48.193 Microsoft.Hosting.Lifetime INF] #: Hosting environment: "Development"
+[23-02-2025 12:18:48.195 Microsoft.Hosting.Lifetime INF] #: Content root path: "C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation"
+[23-02-2025 12:18:48.307 MassTransit INF] #: Bus started: rabbitmq://localhost/
+[23-02-2025 12:20:22.188 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/23/2025 12:20:22 +03:00
+[23-02-2025 12:20:22.267 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday
+[23-02-2025 12:20:22.401 Microsoft.Hosting.Lifetime INF] #: Application started. Press Ctrl+C to shut down.
+[23-02-2025 12:20:22.403 Microsoft.Hosting.Lifetime INF] #: Hosting environment: "Development"
+[23-02-2025 12:20:22.414 Microsoft.Hosting.Lifetime INF] #: Content root path: "C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation"
+[23-02-2025 12:20:22.496 MassTransit INF] #: Bus started: rabbitmq://localhost/
+[23-02-2025 12:22:40.980 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/23/2025 12:22:40 +03:00
+[23-02-2025 12:22:41.082 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday
+[23-02-2025 12:43:59.467 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/23/2025 12:43:59 +03:00
+[23-02-2025 12:43:59.546 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday
+[23-02-2025 12:43:59.625 Microsoft.Hosting.Lifetime INF] #: Application started. Press Ctrl+C to shut down.
+[23-02-2025 12:43:59.626 Microsoft.Hosting.Lifetime INF] #: Hosting environment: "Development"
+[23-02-2025 12:43:59.629 Microsoft.Hosting.Lifetime INF] #: Content root path: "C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation"
+[23-02-2025 12:43:59.742 MassTransit INF] #: Bus started: rabbitmq://localhost/
+[23-02-2025 13:05:24.995 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/23/2025 13:05:24 +03:00
+[23-02-2025 13:05:25.069 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday
+[23-02-2025 13:05:25.176 Microsoft.Hosting.Lifetime INF] #: Application started. Press Ctrl+C to shut down.
+[23-02-2025 13:05:25.180 Microsoft.Hosting.Lifetime INF] #: Hosting environment: "Development"
+[23-02-2025 13:05:25.182 Microsoft.Hosting.Lifetime INF] #: Content root path: "C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation"
+[23-02-2025 13:05:25.235 MassTransit INF] #: Bus started: rabbitmq://localhost/
+[23-02-2025 13:08:14.132 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/23/2025 13:08:14 +03:00
+[23-02-2025 13:08:14.198 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday
+[23-02-2025 13:08:14.281 Microsoft.Hosting.Lifetime INF] #: Application started. Press Ctrl+C to shut down.
+[23-02-2025 13:08:14.282 Microsoft.Hosting.Lifetime INF] #: Hosting environment: "Development"
+[23-02-2025 13:08:14.289 Microsoft.Hosting.Lifetime INF] #: Content root path: "C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation"
+[23-02-2025 13:08:14.342 MassTransit INF] #: Bus started: rabbitmq://localhost/
+[23-02-2025 13:09:46.373 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/23/2025 13:09:46 +03:00
+[23-02-2025 13:09:46.375 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday
+[23-02-2025 13:57:39.924 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/23/2025 13:57:39 +03:00
+[23-02-2025 13:57:39.959 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday
+[23-02-2025 13:57:39.992 Microsoft.Hosting.Lifetime INF] #: Application started. Press Ctrl+C to shut down.
+[23-02-2025 13:57:39.994 Microsoft.Hosting.Lifetime INF] #: Hosting environment: "Development"
+[23-02-2025 13:57:39.996 Microsoft.Hosting.Lifetime INF] #: Content root path: "C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation"
+[23-02-2025 13:57:40.045 MassTransit INF] #: Bus started: rabbitmq://localhost/
+[23-02-2025 14:00:25.355 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/23/2025 14:00:25 +03:00
+[23-02-2025 14:00:25.359 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday
+[23-02-2025 14:02:44.190 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/23/2025 14:02:44 +03:00
+[23-02-2025 14:02:44.226 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday
+[23-02-2025 14:02:44.259 Microsoft.Hosting.Lifetime INF] #: Application started. Press Ctrl+C to shut down.
+[23-02-2025 14:02:44.261 Microsoft.Hosting.Lifetime INF] #: Hosting environment: "Development"
+[23-02-2025 14:02:44.263 Microsoft.Hosting.Lifetime INF] #: Content root path: "C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation"
+[23-02-2025 14:02:44.314 MassTransit INF] #: Bus started: rabbitmq://localhost/
+[23-02-2025 14:09:13.910 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/23/2025 14:09:13 +03:00
+[23-02-2025 14:09:13.947 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday
+[23-02-2025 14:09:13.983 Microsoft.Hosting.Lifetime INF] #: Application started. Press Ctrl+C to shut down.
+[23-02-2025 14:09:13.984 Microsoft.Hosting.Lifetime INF] #: Hosting environment: "Development"
+[23-02-2025 14:09:13.986 Microsoft.Hosting.Lifetime INF] #: Content root path: "C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation"
+[23-02-2025 14:09:14.034 MassTransit INF] #: Bus started: rabbitmq://localhost/
+[23-02-2025 14:11:12.601 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/23/2025 14:11:12 +03:00
+[23-02-2025 14:11:12.636 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday
+[23-02-2025 14:11:12.670 Microsoft.Hosting.Lifetime INF] #: Application started. Press Ctrl+C to shut down.
+[23-02-2025 14:11:12.672 Microsoft.Hosting.Lifetime INF] #: Hosting environment: "Development"
+[23-02-2025 14:11:12.674 Microsoft.Hosting.Lifetime INF] #: Content root path: "C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation"
+[23-02-2025 14:11:12.726 MassTransit INF] #: Bus started: rabbitmq://localhost/
+[23-02-2025 14:13:43.439 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/23/2025 14:13:43 +03:00
+[23-02-2025 14:13:43.476 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday
+[23-02-2025 14:13:43.509 Microsoft.Hosting.Lifetime INF] #: Application started. Press Ctrl+C to shut down.
+[23-02-2025 14:13:43.511 Microsoft.Hosting.Lifetime INF] #: Hosting environment: "Development"
+[23-02-2025 14:13:43.513 Microsoft.Hosting.Lifetime INF] #: Content root path: "C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation"
+[23-02-2025 14:13:43.556 MassTransit INF] #: Bus started: rabbitmq://localhost/
+[23-02-2025 14:25:42.877 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/23/2025 14:25:42 +03:00
+[23-02-2025 14:25:42.912 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday
+[23-02-2025 14:25:42.948 Microsoft.Hosting.Lifetime INF] #: Application started. Press Ctrl+C to shut down.
+[23-02-2025 14:25:42.950 Microsoft.Hosting.Lifetime INF] #: Hosting environment: "Development"
+[23-02-2025 14:25:42.952 Microsoft.Hosting.Lifetime INF] #: Content root path: "C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation"
+[23-02-2025 14:25:42.996 MassTransit INF] #: Bus started: rabbitmq://localhost/
+[23-02-2025 14:27:51.316 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/23/2025 14:27:51 +03:00
+[23-02-2025 14:27:51.353 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday
+[23-02-2025 14:27:51.389 Microsoft.Hosting.Lifetime INF] #: Application started. Press Ctrl+C to shut down.
+[23-02-2025 14:27:51.391 Microsoft.Hosting.Lifetime INF] #: Hosting environment: "Development"
+[23-02-2025 14:27:51.393 Microsoft.Hosting.Lifetime INF] #: Content root path: "C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation"
+[23-02-2025 14:27:51.448 MassTransit INF] #: Bus started: rabbitmq://localhost/

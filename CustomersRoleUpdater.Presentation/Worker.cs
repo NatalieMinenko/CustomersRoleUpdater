@@ -20,14 +20,14 @@ public class Worker(
                 logger.LogInformation("Customers RoleUpdater running at: {time}", DateTimeOffset.Now);
 
                 var list = await customerStatusUpdater.GetAllCustomersAndUpdateRoleAsync();
-
+                 Console.WriteLine(list.CustomerIds?.Count);
                 await bus.Publish<ListCustomerId>(list);
             }
             catch (Exception ex)
             {
                 logger.LogError(ex, "{Message}", ex.Message);
             }
-            await Task.Delay(6000, stoppingToken);
+            await Task.Delay(60000, stoppingToken);
         }
     }
 }
