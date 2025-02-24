@@ -38,8 +38,6 @@ public class Program
             });
         });
 
-        builder.Services.AddHostedService<Worker>();
-
         builder.Logging.AddConfiguration();
         builder.Configuration.GetSection("Logging");
 
@@ -47,6 +45,8 @@ public class Program
         builder.Services.AddSingleton<ICustomersStatusUpdater, CustomersStatusUpdater>();
 
         builder.Services.AddAutoMapper(typeof(CustomersMapperProfile));
+
+        builder.Services.AddHostedService<Worker>();
 
         var host = builder.Build();
         host.Run();

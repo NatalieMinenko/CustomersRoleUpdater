@@ -8,10 +8,10 @@ namespace CustomersRoleUpdater.Application;
 public class CustomersDataService(ILogger<CustomersDataService> logger) : ICustomersDataService
 {
     private readonly CommonHttpClient? _httpClient;
-    private readonly string _baseUrl = "https://localhost:7083/api/customers/";
+    private readonly string _baseUrl = "https://194.87.210.5:12000/api/customers/";
 
     public CustomersDataService(
-        ILogger<CommonHttpClient>clientLogger,
+        ILogger<CommonHttpClient> clientLogger,
         ILogger<CustomersDataService> logger,
         HttpMessageHandler? handler = null 
         ) : this(logger)

@@ -13,6 +13,7 @@ public class Worker(
 {
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
+        await Task.Delay(1000);
         while (!stoppingToken.IsCancellationRequested)
         {
             try 
