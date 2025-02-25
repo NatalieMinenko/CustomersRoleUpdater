@@ -7,8 +7,8 @@ namespace WorkerService.Presentation;
 
 public class Worker(
     ILogger<Worker> logger,
-    ICustomersStatusUpdater customerStatusUpdater,
-    IBus bus
+    ICustomersStatusUpdater customerStatusUpdater
+    //IBus bus
 ) : BackgroundService
 {
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -18,11 +18,11 @@ public class Worker(
         {
             try 
             {
-                logger.LogInformation("Customers RoleUpdater running at: {time}", DateTimeOffset.Now);
+                logger.LogInformation("Customers RoleUpdater running at: {time}", DateTime.Now);
 
                 var list = await customerStatusUpdater.GetAllCustomersAndUpdateRoleAsync();
                  Console.WriteLine(list.CustomerIds?.Count);
-                await bus.Publish<ListCustomerId>(list);
+               // await bus.Publish<ListCustomerId>(list);
             }
             catch (Exception ex)
             {

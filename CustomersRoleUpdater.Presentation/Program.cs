@@ -26,17 +26,29 @@ public class Program
         });
         LoggerProviderOptions.RegisterProviderOptions<EventLogSettings, EventLogLoggerProvider>(builder.Services);
 
-        builder.Services.AddMassTransit(x =>
-        {
-            x.UsingRabbitMq((context, cfg) =>
-            {
-                cfg.Host("localhost", "/", h =>
-                {
-                    h.Username("guest");
-                    h.Password("guest");
-                });
-            });
-        });
+        //builder.Services.AddMassTransit(x =>
+        //{
+        //    x.UsingRabbitMq((context, cfg) =>
+        //    {
+        //        cfg.Host("localhost", "/", h =>
+        //        {
+        //            h.Username("guest");
+        //            h.Password("guest");
+        //        });
+        //    });
+        //});
+
+        //builder.Services.AddMassTransit(x =>
+        //{
+        //    x.UsingRabbitMq((context, cfg) =>
+        //    {
+        //        cfg.Host("rabbitmq://194.87.210.5:15672", h =>
+        //        {
+        //            h.Username("batya");
+        //            h.Password("qwe!23");
+        //        });
+        //    });
+        //});
 
         builder.Logging.AddConfiguration();
         builder.Configuration.GetSection("Logging");

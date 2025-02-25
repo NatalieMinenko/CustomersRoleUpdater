@@ -26,7 +26,7 @@ public class CustomersDataService(ILogger<CustomersDataService> logger) : ICusto
         logger.LogInformation("started query by Birhtday");
 
         var date = new DateTime(2010, 6, 1);
-        var datePlus = new DateTime(2010, 6, 1);// date.AddDays(100);
+        var datePlus = new DateTime(2010, 6, 2);// date.AddDays(100);
         var query = new Dictionary<string, string>()
         {
             ["DateStart"] = $"{date}",
