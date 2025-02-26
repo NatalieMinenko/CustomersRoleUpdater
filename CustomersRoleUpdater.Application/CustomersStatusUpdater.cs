@@ -1,6 +1,6 @@
-﻿using CustomersRoleUpdater.Application.Models;
+﻿
 using CustomersRoleUpdater.Application.Interfaces;
-using Contract;
+using MYPBackendMicroserviceIntegrations.Messages;
 
 namespace CustomersRoleUpdater.Application;
 
@@ -8,12 +8,12 @@ public class CustomersStatusUpdater(
     ICustomersDataService customerDataRequest
 ) : ICustomersStatusUpdater
 {
-    private List<Guid> UpdateCustomerRoles(List<Customer>[] customers)
+    private List<Guid> UpdateCustomerRoles(List<Guid>[] customers)
     {
-        return customers.SelectMany(c => c).DistinctBy(p => p).Select(p => p.Id).ToList();
+        return customers.SelectMany(c => c).DistinctBy(p => p).ToList();
     }
 
-    public async Task<ListCustomerId> GetAllCustomersAndUpdateRoleAsync()
+    public async Task<CustomerRoleUpdateIdsMessage> GetAllCustomersAndUpdateRoleAsync()
     {
         var task1 = customerDataRequest.GetCustomersForUpdateByBirhtdayAsync();
         var task2 = customerDataRequest.GetCustomersForUpdateByCountTransactionAsync();
@@ -21,8 +21,8 @@ public class CustomersStatusUpdater(
 
         var customers = await Task.WhenAll(task1, task2, task3);
 
-        ListCustomerId customerIds = new();
-        customerIds.CustomerIds = UpdateCustomerRoles(customers);
+        CustomerRoleUpdateIdsMessage customerIds = new();
+        customerIds.VipCustomerIds = UpdateCustomerRoles(customers);
 
         return customerIds;
     }

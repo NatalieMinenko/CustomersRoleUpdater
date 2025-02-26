@@ -4,10 +4,7 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using Moq.Protected;
 using System.Net;
-using System;
 using System.Text.Json;
-using System.IO;
-using static MassTransit.ValidationResultExtensions;
 
 namespace CustomersRoleUpdater.Application.Tests;
 
@@ -46,7 +43,7 @@ public class CommonHttpClientTest
         // act
         var result = await _sut.GetRequest<List<Customer>>("");
         // assert
-        Assert.IsType<List<Customer>>(result);
+        Assert.NotNull(result);
     }
 
     [Fact]

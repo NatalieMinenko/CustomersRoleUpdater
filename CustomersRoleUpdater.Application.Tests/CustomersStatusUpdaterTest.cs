@@ -1,8 +1,7 @@
 ﻿
-using Contract;
 using CustomersRoleUpdater.Application.Interfaces;
-using CustomersRoleUpdater.Application.Models;
 using Moq;
+using MYPBackendMicroserviceIntegrations.Messages;
 
 namespace CustomersRoleUpdater.Application.Tests;
 
@@ -22,8 +21,8 @@ public class CustomersStatusUpdaterTest
     public async Task GetAllCustomersAndUpdateRoleAsync_Call_GetListIdsSuccess()
     {
         // arrange
-        var customers = new List<Customer>
-            { new Customer { Id = Guid.NewGuid(), Role = Role.Regular } };
+        var customers = new List<Guid>
+            { };
   
         _customersDataService.Setup(t => t.GetCustomersForUpdateBySumTransactionAsync()).
             ReturnsAsync(customers);
@@ -34,6 +33,6 @@ public class CustomersStatusUpdaterTest
         // act
         var listId = await _sut.GetAllCustomersAndUpdateRoleAsync();
         //assert
-        Assert.IsType<ListCustomerId>(listId);
+        Assert.IsType<CustomerRoleUpdateIdsMessage>(listId);
     }
 }

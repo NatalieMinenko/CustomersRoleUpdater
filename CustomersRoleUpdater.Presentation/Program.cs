@@ -4,7 +4,6 @@ using Microsoft.Extensions.Logging.Configuration;
 using Microsoft.Extensions.Logging.EventLog;
 using Serilog;
 using MassTransit;
-using CustomersRoleUpdater.Application.Mappings;
 
 namespace WorkerService.Presentation;
 
@@ -13,6 +12,14 @@ public class Program
     public static void Main(string[] args)
     {
         var builder = Host.CreateApplicationBuilder(args);
+
+        builder.Configuration
+            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+            .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: true)
+            .AddJsonFile("appsettings.secrets.json", optional: true, reloadOnChange: true)
+            .AddCommandLine(args)
+            .AddEnvironmentVariables();
+            
 
         builder.Logging.ClearProviders();
         Log.Logger = new LoggerConfiguration()
@@ -26,37 +33,39 @@ public class Program
         });
         LoggerProviderOptions.RegisterProviderOptions<EventLogSettings, EventLogLoggerProvider>(builder.Services);
 
-        //builder.Services.AddMassTransit(x =>
-        //{
-        //    x.UsingRabbitMq((context, cfg) =>
-        //    {
-        //        cfg.Host("localhost", "/", h =>
-        //        {
-        //            h.Username("guest");
-        //            h.Password("guest");
-        //        });
-        //    });
-        //});
+        //var url = builder.Configuration.GetRequiredSection("RabbitMq").GetValue<string>("Host")?? string.Empty;
+        //var name = builder.Configuration.GetRequiredSection("RabbitMq").GetValue<string>("Name") ?? string.Empty; 
+        //var password = builder.Configuration.GetRequiredSection("RabbitMq").GetValue<string>("Password") ?? string.Empty;
 
         //builder.Services.AddMassTransit(x =>
         //{
         //    x.UsingRabbitMq((context, cfg) =>
+        //{
+        //    cfg.Host(url, h =>
         //    {
-        //        cfg.Host("rabbitmq://194.87.210.5:15672", h =>
-        //        {
-        //            h.Username("batya");
-        //            h.Password("qwe!23");
-        //        });
+        //        h.Username(name);
+        //        h.Password(password);
         //    });
         //});
+        //});
+
+        builder.Services.AddMassTransit(x =>
+        {
+            x.UsingRabbitMq((context, cfg) =>
+            {
+                cfg.Host("rabbitmq://localhost:5672/", h =>
+                {
+                    h.Username("guest");
+                    h.Password("guest");
+                });
+            });
+        });
 
         builder.Logging.AddConfiguration();
         builder.Configuration.GetSection("Logging");
 
         builder.Services.AddSingleton<ICustomersDataService, CustomersDataService>();
         builder.Services.AddSingleton<ICustomersStatusUpdater, CustomersStatusUpdater>();
-
-        builder.Services.AddAutoMapper(typeof(CustomersMapperProfile));
 
         builder.Services.AddHostedService<Worker>();
 

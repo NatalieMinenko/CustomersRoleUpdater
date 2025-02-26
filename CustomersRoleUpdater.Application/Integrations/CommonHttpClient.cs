@@ -40,7 +40,7 @@ public class CommonHttpClient
         var response = await _httpClient.GetAsync(path);
         var g = response;
         if (!response.IsSuccessStatusCode)
-            _logger.LogError($"api error: {(int)response.StatusCode}-{response.ReasonPhrase}");
+            _logger.LogError($"api error: {(int)response.StatusCode}-{response.ReasonPhrase} path: {path}");
         response.EnsureSuccessStatusCode();
         var content = await response.Content.ReadAsStringAsync();
         var result = JsonSerializer.Deserialize<T>(content, _options);
