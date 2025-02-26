@@ -1,0 +1,8 @@
+[27-02-2025 01:21:31.821 CustomersRoleUpdater.Application.Integrations.CommonHttpClient INF] #: let's do some magic now
+[27-02-2025 01:21:31.939 Microsoft.Hosting.Lifetime INF] #: Application started. Press Ctrl+C to shut down.
+[27-02-2025 01:21:31.941 Microsoft.Hosting.Lifetime INF] #: Hosting environment: "Development"
+[27-02-2025 01:21:31.944 Microsoft.Hosting.Lifetime INF] #: Content root path: "C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation"
+[27-02-2025 01:21:32.133 MassTransit INF] #: Bus started: rabbitmq://localhost/
+[27-02-2025 01:21:32.942 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/27/2025 01:21:32
+[27-02-2025 01:21:32.948 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday, time: 21 minut
+[27-02-2025 01:21:32.954 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by transactions count, time: 21 minut

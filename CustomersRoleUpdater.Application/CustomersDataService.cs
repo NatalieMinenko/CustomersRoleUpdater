@@ -2,7 +2,7 @@
 using CustomersRoleUpdater.Application.Interfaces;
 using CustomersRoleUpdater.Application.Integrations;
 using Microsoft.Extensions.Logging;
-using static System.Net.WebRequestMethods;
+
 
 namespace CustomersRoleUpdater.Application;
 
@@ -35,8 +35,10 @@ public class CustomersDataService(ILogger<CustomersDataService> logger) : ICusto
 
         var resultQuery = RequestUriUtil.GetUriWithQueryString(query);
         var response = await _httpClient.GetRequest<List<Customer>>($"api/customers/birth-date{resultQuery}");
+
         var customerIds = GetGuidFromCustomer(response);
-        logger.LogInformation($"finish query by Birhtday, time:{DateTime.Now.Minute} minut");
+        logger.LogInformation(
+            $"finish query by Birhtday, time:{DateTime.Now.Minute} minut, count without filter{response.Count}");
         return customerIds;
 
         //return new List<Guid>() {};
@@ -58,22 +60,30 @@ public class CustomersDataService(ILogger<CustomersDataService> logger) : ICusto
 
         var resultQuery = RequestUriUtil.GetUriWithQueryString(query);
         var response = await _httpClient.GetRequest<List<Transaction>>($"api/customers/{resultQuery}");
-        var customerIds = FilterTransactionToGetCustomerId(response);
-        logger.LogInformation($"finish query by transactions count, time:{DateTime.Now.Minute} minut");
+
+        var copyList = new List<Transaction>(response);
+        var listGuids = FilterTransactionBySumTransaction(copyList, DateTime.Now.AddDays(-70), DateTime.Now.AddDays(-65));
+        var customerIds = FilterTransactionByCount(response);
+        logger.LogInformation(
+            $"finish query by transactions, time: {DateTime.Now.Minute} minut, count without filter {response.Count}");
         return customerIds;
 
         //return new List<Guid>() {};
     }
-    public async Task<List<Guid>> GetCustomersForUpdateBySumTransactionAsync()
-    {
-        //return await _httpClient.GetRequest<List<Customer>>?("api/customers/sum/");
-        return new List<Guid>() {};
-    }
-
-    private List<Guid> FilterTransactionToGetCustomerId(List<Transaction>transaction)
+   
+    private List<Guid> FilterTransactionByCount(List<Transaction>transaction)
     {
         return transaction.Where(t => t.TransactionType != (TransactionType)2)
             .GroupBy(c => c.CustomerId).Where(g => g.Count() > 5).Select(i => i.Key).ToList();
+    }
+
+    private List<Guid> FilterTransactionBySumTransaction(List<Transaction> response, DateTime dateStart, DateTime dateEnd)
+    {
+         return response.Where(t => t.Date >= dateStart && t.Date <= dateEnd).
+                GroupBy(g => g.CustomerId).Where(w =>
+                    w.Where(y => y.TransactionType != (TransactionType)2).Sum(s => s.Amount) -
+                    w.Where(y => y.TransactionType == (TransactionType)2).Sum(s => s.Amount) > 13000).
+                    Select(k => k.Key).ToList();   
     }
 
     private List<Guid> GetGuidFromCustomer(List<Customer> customers)

@@ -21,7 +21,9 @@ public class Worker(
                 logger.LogInformation("Customers RoleUpdater running at: {time}", DateTime.Now);
 
                 var list = await customerStatusUpdater.GetAllCustomersAndUpdateRoleAsync();
-                 
+
+                logger.LogInformation($"Worker succes, count guid for update {list.VipCustomerIds.Count}");
+
                 await bus.Publish<CustomerRoleUpdateIdsMessage>(list);
             }
             catch (Exception ex)

@@ -17,9 +17,8 @@ public class CustomersStatusUpdater(
     {
         var task1 = customerDataRequest.GetCustomersForUpdateByBirhtdayAsync();
         var task2 = customerDataRequest.GetCustomersForUpdateByCountTransactionAsync();
-        var task3 = customerDataRequest.GetCustomersForUpdateBySumTransactionAsync();
 
-        var customers = await Task.WhenAll(task1, task2, task3);
+        var customers = await Task.WhenAll(task1, task2);
 
         CustomerRoleUpdateIdsMessage customerIds = new();
         customerIds.VipCustomerIds = UpdateCustomerRoles(customers);
