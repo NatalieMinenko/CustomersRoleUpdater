@@ -1225,3 +1225,194 @@ System.Net.Http.HttpRequestException: Подключение не установ
 [26-02-2025 22:36:18.286 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/26/2025 22:36:18
 [26-02-2025 22:36:18.292 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday, time: 36
 [26-02-2025 22:36:18.299 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by transactions count, time: 36 minut
+[26-02-2025 22:59:37.358 CustomersRoleUpdater.Application.Integrations.CommonHttpClient INF] #: let's do some magic now
+[26-02-2025 22:59:37.461 Microsoft.Hosting.Lifetime INF] #: Application started. Press Ctrl+C to shut down.
+[26-02-2025 22:59:37.463 Microsoft.Hosting.Lifetime INF] #: Hosting environment: "Development"
+[26-02-2025 22:59:37.466 Microsoft.Hosting.Lifetime INF] #: Content root path: "C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation"
+[26-02-2025 22:59:37.715 MassTransit INF] #: Bus started: rabbitmq://localhost/
+[26-02-2025 22:59:38.470 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/26/2025 22:59:38
+[26-02-2025 22:59:38.476 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday, time: 59
+[26-02-2025 22:59:38.539 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by transactions count, time: 59 minut
+[26-02-2025 23:00:28.942 CustomersRoleUpdater.Application.Integrations.CommonHttpClient INF] #: let's do some magic now
+[26-02-2025 23:00:29.028 Microsoft.Hosting.Lifetime INF] #: Application started. Press Ctrl+C to shut down.
+[26-02-2025 23:00:29.030 Microsoft.Hosting.Lifetime INF] #: Hosting environment: "Development"
+[26-02-2025 23:00:29.072 Microsoft.Hosting.Lifetime INF] #: Content root path: "C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation"
+[26-02-2025 23:00:29.297 MassTransit INF] #: Bus started: rabbitmq://localhost/
+[26-02-2025 23:00:30.024 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/26/2025 23:00:30
+[26-02-2025 23:00:30.028 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday, time: 0
+[26-02-2025 23:00:30.089 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by transactions count, time: 0 minut
+[26-02-2025 23:02:37.309 CustomersRoleUpdater.Application.Integrations.CommonHttpClient INF] #: let's do some magic now
+[26-02-2025 23:02:37.409 Microsoft.Hosting.Lifetime INF] #: Application started. Press Ctrl+C to shut down.
+[26-02-2025 23:02:37.413 Microsoft.Hosting.Lifetime INF] #: Hosting environment: "Development"
+[26-02-2025 23:02:37.418 Microsoft.Hosting.Lifetime INF] #: Content root path: "C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation"
+[26-02-2025 23:02:37.691 MassTransit INF] #: Bus started: rabbitmq://localhost/
+[26-02-2025 23:02:38.406 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/26/2025 23:02:38
+[26-02-2025 23:02:38.410 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday, time: 2
+[26-02-2025 23:02:38.415 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by transactions count, time: 2 minut
+[26-02-2025 23:04:49.839 CustomersRoleUpdater.Application.Integrations.CommonHttpClient INF] #: let's do some magic now
+[26-02-2025 23:04:49.965 Microsoft.Hosting.Lifetime INF] #: Application started. Press Ctrl+C to shut down.
+[26-02-2025 23:04:49.968 Microsoft.Hosting.Lifetime INF] #: Hosting environment: "Development"
+[26-02-2025 23:04:49.973 Microsoft.Hosting.Lifetime INF] #: Content root path: "C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation"
+[26-02-2025 23:04:50.189 MassTransit INF] #: Bus started: rabbitmq://localhost/
+[26-02-2025 23:04:50.961 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/26/2025 23:04:50
+[26-02-2025 23:04:50.966 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday, time: 4
+[26-02-2025 23:04:50.971 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by transactions count, time: 4 minut
+[26-02-2025 23:05:24.066 CustomersRoleUpdater.Application.Integrations.CommonHttpClient ERR] #: api error: 500-Internal Server Error path: ?DateStart=2024-12-18&DateEnd=2024-12-18
+[26-02-2025 23:05:24.254 WorkerService.Presentation.Worker ERR] #: "Response status code does not indicate success: 500 (Internal Server Error)."
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 500 (Internal Server Error).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at CustomersRoleUpdater.Application.Integrations.CommonHttpClient.GetRequest[T](String path) in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\Integrations\CommonHttpClient.cs:line 44
+   at CustomersRoleUpdater.Application.CustomersDataService.GetCustomersForUpdateByCountTransactionAsync() in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\CustomersDataService.cs:line 60
+   at CustomersRoleUpdater.Application.CustomersStatusUpdater.GetAllCustomersAndUpdateRoleAsync() in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\CustomersStatusUpdater.cs:line 22
+   at WorkerService.Presentation.Worker.ExecuteAsync(CancellationToken stoppingToken) in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation\Worker.cs:line 23
+[26-02-2025 23:06:49.834 CustomersRoleUpdater.Application.Integrations.CommonHttpClient INF] #: let's do some magic now
+[26-02-2025 23:06:49.926 Microsoft.Hosting.Lifetime INF] #: Application started. Press Ctrl+C to shut down.
+[26-02-2025 23:06:49.928 Microsoft.Hosting.Lifetime INF] #: Hosting environment: "Development"
+[26-02-2025 23:06:49.933 Microsoft.Hosting.Lifetime INF] #: Content root path: "C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation"
+[26-02-2025 23:06:50.119 MassTransit INF] #: Bus started: rabbitmq://localhost/
+[26-02-2025 23:06:50.933 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/26/2025 23:06:50
+[26-02-2025 23:06:50.938 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday, time: 6
+[26-02-2025 23:06:50.944 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by transactions count, time: 6 minut
+[26-02-2025 23:10:14.364 CustomersRoleUpdater.Application.Integrations.CommonHttpClient INF] #: let's do some magic now
+[26-02-2025 23:10:14.478 Microsoft.Hosting.Lifetime INF] #: Application started. Press Ctrl+C to shut down.
+[26-02-2025 23:10:14.480 Microsoft.Hosting.Lifetime INF] #: Hosting environment: "Development"
+[26-02-2025 23:10:14.484 Microsoft.Hosting.Lifetime INF] #: Content root path: "C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation"
+[26-02-2025 23:10:14.690 MassTransit INF] #: Bus started: rabbitmq://localhost/
+[26-02-2025 23:10:15.481 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/26/2025 23:10:15
+[26-02-2025 23:10:15.484 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday, time: 10
+[26-02-2025 23:10:15.490 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by transactions count, time: 10 minut
+[26-02-2025 23:10:15.551 WorkerService.Presentation.Worker ERR] #: "Input string was not in a correct format."
+System.FormatException: Input string was not in a correct format.
+   at System.DateTimeFormat.ExpandStandardFormatToCustomPattern(Char format, DateTimeFormatInfo dtfi)
+   at System.DateTimeFormat.Format(DateTime dateTime, String format, IFormatProvider provider, TimeSpan offset)
+   at System.DateTime.ToString(String format)
+   at CustomersRoleUpdater.Application.CustomersDataService.GetCustomersForUpdateByCountTransactionAsync() in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\CustomersDataService.cs:line 48
+   at CustomersRoleUpdater.Application.CustomersStatusUpdater.GetAllCustomersAndUpdateRoleAsync() in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\CustomersStatusUpdater.cs:line 22
+   at WorkerService.Presentation.Worker.ExecuteAsync(CancellationToken stoppingToken) in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation\Worker.cs:line 23
+[26-02-2025 23:11:09.516 CustomersRoleUpdater.Application.Integrations.CommonHttpClient INF] #: let's do some magic now
+[26-02-2025 23:11:09.628 Microsoft.Hosting.Lifetime INF] #: Application started. Press Ctrl+C to shut down.
+[26-02-2025 23:11:09.630 Microsoft.Hosting.Lifetime INF] #: Hosting environment: "Development"
+[26-02-2025 23:11:09.639 Microsoft.Hosting.Lifetime INF] #: Content root path: "C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation"
+[26-02-2025 23:11:09.853 MassTransit INF] #: Bus started: rabbitmq://localhost/
+[26-02-2025 23:11:10.637 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/26/2025 23:11:10
+[26-02-2025 23:11:10.641 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday, time: 11
+[26-02-2025 23:11:10.646 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by transactions count, time: 11 minut
+[26-02-2025 23:11:59.623 CustomersRoleUpdater.Application.Integrations.CommonHttpClient INF] #: let's do some magic now
+[26-02-2025 23:11:59.733 Microsoft.Hosting.Lifetime INF] #: Application started. Press Ctrl+C to shut down.
+[26-02-2025 23:11:59.736 Microsoft.Hosting.Lifetime INF] #: Hosting environment: "Development"
+[26-02-2025 23:11:59.746 Microsoft.Hosting.Lifetime INF] #: Content root path: "C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation"
+[26-02-2025 23:11:59.943 MassTransit INF] #: Bus started: rabbitmq://localhost/
+[26-02-2025 23:12:00.731 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/26/2025 23:12:00
+[26-02-2025 23:12:00.735 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday, time: 12
+[26-02-2025 23:12:00.740 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by transactions count, time: 12 minut
+[26-02-2025 23:12:52.843 CustomersRoleUpdater.Application.Integrations.CommonHttpClient INF] #: let's do some magic now
+[26-02-2025 23:12:52.952 Microsoft.Hosting.Lifetime INF] #: Application started. Press Ctrl+C to shut down.
+[26-02-2025 23:12:52.954 Microsoft.Hosting.Lifetime INF] #: Hosting environment: "Development"
+[26-02-2025 23:12:52.963 Microsoft.Hosting.Lifetime INF] #: Content root path: "C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation"
+[26-02-2025 23:12:53.137 MassTransit INF] #: Bus started: rabbitmq://localhost/
+[26-02-2025 23:12:53.958 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/26/2025 23:12:53
+[26-02-2025 23:12:53.963 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday, time: 12
+[26-02-2025 23:12:53.969 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by transactions count, time: 12 minut
+[26-02-2025 23:12:56.405 CustomersRoleUpdater.Application.Integrations.CommonHttpClient ERR] #: api error: 500-Internal Server Error path: ?DateStart=2024-12-18&DateEnd=2024-12-23
+[26-02-2025 23:12:56.599 WorkerService.Presentation.Worker ERR] #: "Response status code does not indicate success: 500 (Internal Server Error)."
+System.Net.Http.HttpRequestException: Response status code does not indicate success: 500 (Internal Server Error).
+   at System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode()
+   at CustomersRoleUpdater.Application.Integrations.CommonHttpClient.GetRequest[T](String path) in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\Integrations\CommonHttpClient.cs:line 44
+   at CustomersRoleUpdater.Application.CustomersDataService.GetCustomersForUpdateByCountTransactionAsync() in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\CustomersDataService.cs:line 60
+   at CustomersRoleUpdater.Application.CustomersStatusUpdater.GetAllCustomersAndUpdateRoleAsync() in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\CustomersStatusUpdater.cs:line 22
+   at WorkerService.Presentation.Worker.ExecuteAsync(CancellationToken stoppingToken) in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation\Worker.cs:line 23
+[26-02-2025 23:14:14.317 CustomersRoleUpdater.Application.Integrations.CommonHttpClient INF] #: let's do some magic now
+[26-02-2025 23:14:14.418 Microsoft.Hosting.Lifetime INF] #: Application started. Press Ctrl+C to shut down.
+[26-02-2025 23:14:14.420 Microsoft.Hosting.Lifetime INF] #: Hosting environment: "Development"
+[26-02-2025 23:14:14.426 Microsoft.Hosting.Lifetime INF] #: Content root path: "C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation"
+[26-02-2025 23:14:14.623 MassTransit INF] #: Bus started: rabbitmq://localhost/
+[26-02-2025 23:14:15.416 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/26/2025 23:14:15
+[26-02-2025 23:14:15.420 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday, time: 14
+[26-02-2025 23:14:15.425 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by transactions count, time: 14 minut
+[26-02-2025 23:15:07.631 WorkerService.Presentation.Worker ERR] #: "An error occurred while sending the request."
+System.Net.Http.HttpRequestException: An error occurred while sending the request.
+ ---> System.IO.IOException: Unable to read data from the transport connection: Удаленный хост принудительно разорвал существующее подключение..
+ ---> System.Net.Sockets.SocketException (10054): Удаленный хост принудительно разорвал существующее подключение.
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource<System.Int32>.GetResult(Int16 token)
+   at System.Net.Security.SslStream.EnsureFullTlsFrameAsync[TIOAdapter](CancellationToken cancellationToken, Int32 estimatedSize)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Net.Security.SslStream.ReadAsyncInternal[TIOAdapter](Memory`1 buffer, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Net.Http.HttpConnection.InitialFillAsync(Boolean async)
+   at System.Net.Http.HttpConnection.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnection.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at CustomersRoleUpdater.Application.Integrations.CommonHttpClient.GetRequest[T](String path) in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\Integrations\CommonHttpClient.cs:line 40
+   at CustomersRoleUpdater.Application.CustomersDataService.GetCustomersForUpdateByCountTransactionAsync() in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\CustomersDataService.cs:line 60
+   at CustomersRoleUpdater.Application.CustomersStatusUpdater.GetAllCustomersAndUpdateRoleAsync() in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\CustomersStatusUpdater.cs:line 22
+   at WorkerService.Presentation.Worker.ExecuteAsync(CancellationToken stoppingToken) in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation\Worker.cs:line 23
+[26-02-2025 23:16:10.870 CustomersRoleUpdater.Application.Integrations.CommonHttpClient INF] #: let's do some magic now
+[26-02-2025 23:16:10.955 Microsoft.Hosting.Lifetime INF] #: Application started. Press Ctrl+C to shut down.
+[26-02-2025 23:16:10.957 Microsoft.Hosting.Lifetime INF] #: Hosting environment: "Development"
+[26-02-2025 23:16:10.961 Microsoft.Hosting.Lifetime INF] #: Content root path: "C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation"
+[26-02-2025 23:16:11.146 MassTransit INF] #: Bus started: rabbitmq://localhost/
+[26-02-2025 23:16:11.963 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/26/2025 23:16:11
+[26-02-2025 23:16:11.968 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday, time: 16
+[26-02-2025 23:16:11.974 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by transactions count, time: 16 minut
+[26-02-2025 23:16:27.039 WorkerService.Presentation.Worker ERR] #: "An error occurred while sending the request."
+System.Net.Http.HttpRequestException: An error occurred while sending the request.
+ ---> System.IO.IOException: Unable to read data from the transport connection: Удаленный хост принудительно разорвал существующее подключение..
+ ---> System.Net.Sockets.SocketException (10054): Удаленный хост принудительно разорвал существующее подключение.
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource<System.Int32>.GetResult(Int16 token)
+   at System.Net.Security.SslStream.EnsureFullTlsFrameAsync[TIOAdapter](CancellationToken cancellationToken, Int32 estimatedSize)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Net.Security.SslStream.ReadAsyncInternal[TIOAdapter](Memory`1 buffer, CancellationToken cancellationToken)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at System.Net.Http.HttpConnection.InitialFillAsync(Boolean async)
+   at System.Net.Http.HttpConnection.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnection.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at CustomersRoleUpdater.Application.Integrations.CommonHttpClient.GetRequest[T](String path) in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\Integrations\CommonHttpClient.cs:line 40
+   at CustomersRoleUpdater.Application.CustomersDataService.GetCustomersForUpdateByCountTransactionAsync() in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\CustomersDataService.cs:line 60
+   at CustomersRoleUpdater.Application.CustomersStatusUpdater.GetAllCustomersAndUpdateRoleAsync() in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Application\CustomersStatusUpdater.cs:line 22
+   at WorkerService.Presentation.Worker.ExecuteAsync(CancellationToken stoppingToken) in C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation\Worker.cs:line 23
+[26-02-2025 23:16:56.538 CustomersRoleUpdater.Application.Integrations.CommonHttpClient INF] #: let's do some magic now
+[26-02-2025 23:16:56.622 Microsoft.Hosting.Lifetime INF] #: Application started. Press Ctrl+C to shut down.
+[26-02-2025 23:16:56.624 Microsoft.Hosting.Lifetime INF] #: Hosting environment: "Development"
+[26-02-2025 23:16:56.628 Microsoft.Hosting.Lifetime INF] #: Content root path: "C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation"
+[26-02-2025 23:16:56.841 MassTransit INF] #: Bus started: rabbitmq://localhost/
+[26-02-2025 23:16:57.633 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/26/2025 23:16:57
+[26-02-2025 23:16:57.637 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday, time: 16
+[26-02-2025 23:16:57.643 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by transactions count, time: 16 minut
+[26-02-2025 23:22:54.897 CustomersRoleUpdater.Application.Integrations.CommonHttpClient INF] #: let's do some magic now
+[26-02-2025 23:22:54.957 Microsoft.Hosting.Lifetime INF] #: Application started. Press Ctrl+C to shut down.
+[26-02-2025 23:22:54.959 Microsoft.Hosting.Lifetime INF] #: Hosting environment: "Development"
+[26-02-2025 23:22:54.963 Microsoft.Hosting.Lifetime INF] #: Content root path: "C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation"
+[26-02-2025 23:22:55.102 MassTransit INF] #: Bus started: rabbitmq://localhost/
+[26-02-2025 23:22:55.955 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/26/2025 23:22:55
+[26-02-2025 23:22:55.961 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday, time: 22
+[26-02-2025 23:22:55.992 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by transactions count, time: 22 minut
+[26-02-2025 23:23:28.817 CustomersRoleUpdater.Application.CustomersDataService INF] #: finish query by Birhtday, time:23 minut
+[26-02-2025 23:25:20.805 CustomersRoleUpdater.Application.CustomersDataService INF] #: finish query by transactions count, time:25 minut
+[26-02-2025 23:28:31.844 CustomersRoleUpdater.Application.Integrations.CommonHttpClient INF] #: let's do some magic now
+[26-02-2025 23:28:31.903 Microsoft.Hosting.Lifetime INF] #: Application started. Press Ctrl+C to shut down.
+[26-02-2025 23:28:31.905 Microsoft.Hosting.Lifetime INF] #: Hosting environment: "Development"
+[26-02-2025 23:28:31.910 Microsoft.Hosting.Lifetime INF] #: Content root path: "C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation"
+[26-02-2025 23:28:32.036 MassTransit INF] #: Bus started: rabbitmq://localhost/
+[26-02-2025 23:28:32.910 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/26/2025 23:28:32
+[26-02-2025 23:28:32.915 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday, time: 28 minut
+[26-02-2025 23:28:32.947 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by transactions count, time: 28 minut
+[26-02-2025 23:28:47.821 CustomersRoleUpdater.Application.Integrations.CommonHttpClient INF] #: let's do some magic now
+[26-02-2025 23:28:47.879 Microsoft.Hosting.Lifetime INF] #: Application started. Press Ctrl+C to shut down.
+[26-02-2025 23:28:47.881 Microsoft.Hosting.Lifetime INF] #: Hosting environment: "Development"
+[26-02-2025 23:28:47.884 Microsoft.Hosting.Lifetime INF] #: Content root path: "C:\cod\CustomersRoleUpdater\CustomersRoleUpdater.Presentation"
+[26-02-2025 23:28:48.025 MassTransit INF] #: Bus started: rabbitmq://localhost/
+[26-02-2025 23:28:48.878 WorkerService.Presentation.Worker INF] #: Customers RoleUpdater running at: 02/26/2025 23:28:48
+[26-02-2025 23:28:48.883 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by Birhtday, time: 28 minut
+[26-02-2025 23:28:48.915 CustomersRoleUpdater.Application.CustomersDataService INF] #: started query by transactions count, time: 28 minut
+[26-02-2025 23:29:15.357 CustomersRoleUpdater.Application.CustomersDataService INF] #: finish query by Birhtday, time:29 minut

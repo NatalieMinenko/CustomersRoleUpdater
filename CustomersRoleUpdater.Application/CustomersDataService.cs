@@ -9,7 +9,7 @@ namespace CustomersRoleUpdater.Application;
 public class CustomersDataService(ILogger<CustomersDataService> logger) : ICustomersDataService
 {
     private readonly CommonHttpClient? _httpClient;
-    private readonly string _baseUrl = "https://localhost:7083/api/customers/"; //"https://194.87.210.5:12000/api/customers/"; //
+    private readonly string _baseUrl = "https://localhost:7083/"; //"https://194.87.210.5:12000/api/customers/"; //
 
     public CustomersDataService(
         ILogger<CommonHttpClient> clientLogger,
@@ -22,7 +22,7 @@ public class CustomersDataService(ILogger<CustomersDataService> logger) : ICusto
 
     public async Task<List<Guid>>GetCustomersForUpdateByBirhtdayAsync()
     {
-        logger.LogInformation($"started query by Birhtday, time: {DateTime.Now.Minute}");
+        logger.LogInformation($"started query by Birhtday, time: {DateTime.Now.Minute} minut");
 
         var dateStart = DateTime.Now.AddDays(-70).ToString("yyyy-MM-dd");
         var dateEnd = DateTime.Now.AddDays(-65).ToString("yyyy-MM-dd");
@@ -33,20 +33,20 @@ public class CustomersDataService(ILogger<CustomersDataService> logger) : ICusto
             ["DateEnd"] = $"{dateEnd}",
         };
 
-        ////var resultQuery = RequestUriUtil.GetUriWithQueryString(query);
-        ////var response = await _httpClient.GetRequest<List<Customer>>($"birth-date{resultQuery}");
-        ////var customerIds = GetGuidFromCustomer(response);
-        ////logger.LogInformation($"finish query by Birhtday, time:{DateTime.Now.Minute} minut");
-        ////return customerIds;
+        var resultQuery = RequestUriUtil.GetUriWithQueryString(query);
+        var response = await _httpClient.GetRequest<List<Customer>>($"api/customers/birth-date{resultQuery}");
+        var customerIds = GetGuidFromCustomer(response);
+        logger.LogInformation($"finish query by Birhtday, time:{DateTime.Now.Minute} minut");
+        return customerIds;
 
-        return new List<Guid>() {};
+        //return new List<Guid>() {};
     }
     public async Task<List<Guid>> GetCustomersForUpdateByCountTransactionAsync()
     {
         logger.LogInformation($"started query by transactions count, time: {DateTime.Now.Minute} minut");
 
-        var dateStart = new DateTime(2021-05-06);//= DateTime.Now.AddDays(-40).ToString("o");
-        var dateEnd = new DateTime(2021-07-07);//= DateTime.Now.AddDays(-35).ToString("o"); 
+        var dateStart = DateTime.Now.AddDays(-70).ToString("yyyy-MM-dd");
+        var dateEnd = DateTime.Now.AddDays(-65).ToString("yyyy-MM-dd"); 
         Console.WriteLine(dateStart);
         Console.WriteLine(dateEnd);
 
@@ -57,7 +57,7 @@ public class CustomersDataService(ILogger<CustomersDataService> logger) : ICusto
         };
 
         var resultQuery = RequestUriUtil.GetUriWithQueryString(query);
-        var response = await _httpClient.GetRequest<List<Transaction>>(resultQuery);
+        var response = await _httpClient.GetRequest<List<Transaction>>($"api/customers/{resultQuery}");
         var customerIds = FilterTransactionToGetCustomerId(response);
         logger.LogInformation($"finish query by transactions count, time:{DateTime.Now.Minute} minut");
         return customerIds;
@@ -66,7 +66,7 @@ public class CustomersDataService(ILogger<CustomersDataService> logger) : ICusto
     }
     public async Task<List<Guid>> GetCustomersForUpdateBySumTransactionAsync()
     {
-        //return await _httpClient.GetRequest<List<Customer>>?("/sum/");
+        //return await _httpClient.GetRequest<List<Customer>>?("api/customers/sum/");
         return new List<Guid>() {};
     }
 
