@@ -20,12 +20,12 @@ public class CustomersDataService(ILogger<CustomersDataService> logger) : ICusto
         _httpClient = new CommonHttpClient(clientLogger, _baseUrl, handler);
     }
 
-    public string dateBirthdayStart = DateTime.Now.AddDays(-14).ToString("yyyy-MM-dd");
-    public string dateBirthdayEnd = DateTime.Now.ToString("yyyy-MM-dd");
-    public string dateStartTransactionCount = DateTime.Now.AddDays(-42).ToString("yyyy-MM-dd");
-    public string dateEndTransactionCount = DateTime.Now.ToString("yyyy-MM-dd");
-    public DateTime dateStartTransactionSum = DateTime.Now.AddDays(-30);
-    public DateTime dateEndTransactionSum = DateTime.Now;
+    public string DateBirthdayStart = DateTime.Now.AddDays(-14).ToString("yyyy-MM-dd");
+    public string DateBirthdayEnd = DateTime.Now.ToString("yyyy-MM-dd");
+    public string DateStartTransactionCount = DateTime.Now.AddDays(-42).ToString("yyyy-MM-dd");
+    public string DateEndTransactionCount = DateTime.Now.ToString("yyyy-MM-dd");
+    public DateTime DateStartTransactionSum = DateTime.Now.AddDays(-30);
+    public DateTime DateEndTransactionSum = DateTime.Now;
 
     public async Task<List<Guid>>GetCustomersForUpdateByBirhtdayAsync()
     {
@@ -33,8 +33,8 @@ public class CustomersDataService(ILogger<CustomersDataService> logger) : ICusto
  
         var query = new Dictionary<string, string>()
         {
-            ["DateStart"] = $"{dateBirthdayStart}",
-            ["DateEnd"] = $"{dateBirthdayEnd}",
+            ["DateStart"] = $"{DateBirthdayStart}",
+            ["DateEnd"] = $"{DateBirthdayEnd}",
         };
 
         var resultQuery = RequestUriUtil.GetUriWithQueryString(query);
@@ -51,14 +51,14 @@ public class CustomersDataService(ILogger<CustomersDataService> logger) : ICusto
 
         var query = new Dictionary<string, string>()
         {
-            ["DateStart"] = $"{dateStartTransactionCount}",
-            ["DateEnd"] = $"{dateEndTransactionCount}",
+            ["DateStart"] = $"{DateStartTransactionCount}",
+            ["DateEnd"] = $"{DateEndTransactionCount}",
         };
 
         var resultQuery = RequestUriUtil.GetUriWithQueryString(query);
         var response = await _httpClient.GetRequest<List<Transaction>>($"api/transactions/by-period{resultQuery}");
         var copyList = new List<Transaction>(response);
-        var listGuids = FilterTransactionBySumTransaction(copyList, dateStartTransactionSum, dateEndTransactionSum);
+        var listGuids = FilterTransactionBySumTransaction(copyList, DateStartTransactionSum, DateEndTransactionSum);
         var customerIds = FilterTransactionByCount(response);
         var result = customerIds.Union(listGuids).ToList();
         logger.LogInformation(

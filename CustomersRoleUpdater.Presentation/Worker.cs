@@ -11,9 +11,10 @@ public class Worker(
     IBus bus
 ) : BackgroundService
 {
+    public int Interval = 86400000;
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        await Task.Delay(1000);
+        await Task.Delay(3000);
         while (!stoppingToken.IsCancellationRequested)
         {
             try 
@@ -30,7 +31,7 @@ public class Worker(
             {
                 logger.LogError(ex, "{Message}", ex.Message);
             }
-            await Task.Delay(60000, stoppingToken);
+            await Task.Delay(Interval, stoppingToken);
         }
     }
 }
