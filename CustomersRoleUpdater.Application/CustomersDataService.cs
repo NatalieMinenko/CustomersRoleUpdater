@@ -9,28 +9,32 @@ namespace CustomersRoleUpdater.Application;
 public class CustomersDataService(ILogger<CustomersDataService> logger) : ICustomersDataService
 {
     private readonly CommonHttpClient? _httpClient;
-    private readonly string _baseUrl = "https://localhost:7083/"; //"https://194.87.210.5:12000/"; //
+    private readonly string _baseUrl = "https://194.87.210.5:12000/"; 
 
     public CustomersDataService(
         ILogger<CommonHttpClient> clientLogger,
         ILogger<CustomersDataService> logger,
         HttpMessageHandler? handler = null 
-        ) : this(logger)
+    ) : this(logger)
     {
         _httpClient = new CommonHttpClient(clientLogger, _baseUrl, handler);
     }
 
+    public string dateBirthdayStart = DateTime.Now.AddDays(-14).ToString("yyyy-MM-dd");
+    public string dateBirthdayEnd = DateTime.Now.ToString("yyyy-MM-dd");
+    public string dateStartTransactionCount = DateTime.Now.AddDays(-42).ToString("yyyy-MM-dd");
+    public string dateEndTransactionCount = DateTime.Now.ToString("yyyy-MM-dd");
+    public DateTime dateStartTransactionSum = DateTime.Now.AddDays(-30);
+    public DateTime dateEndTransactionSum = DateTime.Now;
+
     public async Task<List<Guid>>GetCustomersForUpdateByBirhtdayAsync()
     {
         logger.LogInformation($"started query by Birhtday, time: {DateTime.Now.Minute} minut");
-
-        var dateStart = DateTime.Now.AddDays(-70).ToString("yyyy-MM-dd");
-        var dateEnd = DateTime.Now.AddDays(-65).ToString("yyyy-MM-dd");
-  
+ 
         var query = new Dictionary<string, string>()
         {
-            ["DateStart"] = $"{dateStart}",
-            ["DateEnd"] = $"{dateEnd}",
+            ["DateStart"] = $"{dateBirthdayStart}",
+            ["DateEnd"] = $"{dateBirthdayEnd}",
         };
 
         var resultQuery = RequestUriUtil.GetUriWithQueryString(query);
@@ -40,37 +44,27 @@ public class CustomersDataService(ILogger<CustomersDataService> logger) : ICusto
         logger.LogInformation(
             $"finish query by Birhtday, time:{DateTime.Now.Minute} minut, count {response.Count}");
         return customerIds;
-
-        //return new List<Guid>() {};
     }
     public async Task<List<Guid>> GetCustomersForUpdateByCountTransactionAsync()
     {
         logger.LogInformation($"started query by transactions count, time: {DateTime.Now.Minute} minut");
 
-        var dateStart = DateTime.Now.AddDays(-70).ToString("yyyy-MM-dd");
-        var dateEnd = DateTime.Now.AddDays(-65).ToString("yyyy-MM-dd"); 
-        Console.WriteLine(dateStart);
-        Console.WriteLine(dateEnd);
-
         var query = new Dictionary<string, string>()
         {
-            ["DateStart"] = $"{dateStart}",
-            ["DateEnd"] = $"{dateEnd}",
+            ["DateStart"] = $"{dateStartTransactionCount}",
+            ["DateEnd"] = $"{dateEndTransactionCount}",
         };
 
         var resultQuery = RequestUriUtil.GetUriWithQueryString(query);
-        var response = await _httpClient.GetRequest<List<Transaction>>($"api/customers/{resultQuery}");
-
+        var response = await _httpClient.GetRequest<List<Transaction>>($"api/transactions/by-period{resultQuery}");
         var copyList = new List<Transaction>(response);
-        var listGuids = FilterTransactionBySumTransaction(copyList, DateTime.Now.AddDays(-70), DateTime.Now.AddDays(-65));
+        var listGuids = FilterTransactionBySumTransaction(copyList, dateStartTransactionSum, dateEndTransactionSum);
         var customerIds = FilterTransactionByCount(response);
         var result = customerIds.Union(listGuids).ToList();
         logger.LogInformation(
             $"finish query by transactions, time: {DateTime.Now.Minute} minut, count without filter {response.Count}, \n" +
             $" count after filters {result.Count}");
         return result;
-
-        //return new List<Guid>() {};
     }
    
     private List<Guid> FilterTransactionByCount(List<Transaction>transaction)

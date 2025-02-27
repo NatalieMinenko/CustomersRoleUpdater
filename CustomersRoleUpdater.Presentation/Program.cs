@@ -15,17 +15,12 @@ public class Program
 
         builder.Configuration
             .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-            .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: true)
-            .AddJsonFile("appsettings.secrets.json", optional: true, reloadOnChange: true)
-            .AddCommandLine(args)
             .AddEnvironmentVariables();
-            
 
-        builder.Logging.ClearProviders();
-        Log.Logger = new LoggerConfiguration()
-            .ReadFrom.Configuration(builder.Configuration)
-            .CreateLogger();
-        builder.Logging.AddSerilog();
+        if (builder.Environment.IsDevelopment())
+        {
+            builder.Configuration.AddUserSecrets<Program>();
+        }
 
         builder.Services.AddWindowsService(options =>
         {
@@ -33,43 +28,47 @@ public class Program
         });
         LoggerProviderOptions.RegisterProviderOptions<EventLogSettings, EventLogLoggerProvider>(builder.Services);
 
-        //var url = builder.Configuration.GetRequiredSection("RabbitMq").GetValue<string>("Host")?? string.Empty;
-        //var name = builder.Configuration.GetRequiredSection("RabbitMq").GetValue<string>("Name") ?? string.Empty; 
-        //var password = builder.Configuration.GetRequiredSection("RabbitMq").GetValue<string>("Password") ?? string.Empty;
-
-        //builder.Services.AddMassTransit(x =>
-        //{
-        //    x.UsingRabbitMq((context, cfg) =>
-        //{
-        //    cfg.Host(url, h =>
-        //    {
-        //        h.Username(name);
-        //        h.Password(password);
-        //    });
-        //});
-        //});
+        var url = builder.Configuration.GetRequiredSection("RabbitMq").GetValue<string>("Host") ?? string.Empty;
+        var name = builder.Configuration.GetRequiredSection("RabbitMq").GetValue<string>("Name") ?? string.Empty;
+        var password = builder.Configuration.GetRequiredSection("RabbitMq").GetValue<string>("Password") ?? string.Empty;
 
         builder.Services.AddMassTransit(x =>
         {
             x.UsingRabbitMq((context, cfg) =>
+        {
+            cfg.Host(url, h =>
             {
-                cfg.Host("rabbitmq://localhost:5672/", h =>
-                {
-                    h.Username("guest");
-                    h.Password("guest");
-                });
+                h.Username(name);
+                h.Password(password);
             });
         });
+        });
 
+        Log.Logger = new LoggerConfiguration()
+            .ReadFrom.Configuration(builder.Configuration)
+            .CreateLogger();
+        builder.Logging.ClearProviders();
+        builder.Logging.AddSerilog();
         builder.Logging.AddConfiguration();
         builder.Configuration.GetSection("Logging");
 
         builder.Services.AddSingleton<ICustomersDataService, CustomersDataService>();
         builder.Services.AddSingleton<ICustomersStatusUpdater, CustomersStatusUpdater>();
-
         builder.Services.AddHostedService<Worker>();
 
         var host = builder.Build();
-        host.Run();
+        try
+        {
+            Log.Information("Starting up the service...");
+            host.Run();
+        }
+        catch (Exception ex)
+        {
+            Log.Fatal(ex, "An unhandled exception occurred during startup.");
+        }
+        finally
+        {
+            Log.CloseAndFlush();
+        }
     }
 }
