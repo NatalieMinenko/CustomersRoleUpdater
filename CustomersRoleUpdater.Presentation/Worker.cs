@@ -1,7 +1,7 @@
 
 using CustomersRoleUpdater.Application.Interfaces;
 using MassTransit;
-using Contract;
+using MYPBackendMicroserviceIntegrations.Messages;
 
 namespace WorkerService.Presentation;
 
@@ -11,23 +11,27 @@ public class Worker(
     IBus bus
 ) : BackgroundService
 {
+    public int Interval = 86400000;
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
+        await Task.Delay(3000);
         while (!stoppingToken.IsCancellationRequested)
         {
             try 
             {
-                logger.LogInformation("Customers RoleUpdater running at: {time}", DateTimeOffset.Now);
+                logger.LogInformation("Customers RoleUpdater running at: {time}", DateTime.Now);
 
                 var list = await customerStatusUpdater.GetAllCustomersAndUpdateRoleAsync();
 
-                await bus.Publish<ListCustomerId>(list);
+                logger.LogInformation($"Worker succes, count guid for update {list.VipCustomerIds.Count}");
+
+                await bus.Publish<CustomerRoleUpdateIdsMessage>(list);
             }
             catch (Exception ex)
             {
                 logger.LogError(ex, "{Message}", ex.Message);
             }
-            await Task.Delay(6000, stoppingToken);
+            await Task.Delay(Interval, stoppingToken);
         }
     }
 }

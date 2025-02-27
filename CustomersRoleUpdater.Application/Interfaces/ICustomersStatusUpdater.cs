@@ -1,9 +1,9 @@
-﻿using Contract;
-using CustomersRoleUpdater.Application.Models;
+﻿
+using MYPBackendMicroserviceIntegrations.Messages;
 
 namespace CustomersRoleUpdater.Application.Interfaces;
 
 public interface ICustomersStatusUpdater
 {
-    public Task <ListCustomerId> GetAllCustomersAndUpdateRoleAsync();
+    public Task <CustomerRoleUpdateIdsMessage> GetAllCustomersAndUpdateRoleAsync();
 }
