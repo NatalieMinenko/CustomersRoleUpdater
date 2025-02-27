@@ -9,7 +9,7 @@ namespace CustomersRoleUpdater.Application;
 public class CustomersDataService(ILogger<CustomersDataService> logger) : ICustomersDataService
 {
     private readonly CommonHttpClient? _httpClient;
-    private readonly string _baseUrl = "https://localhost:7083/"; //"https://194.87.210.5:12000/api/customers/"; //
+    private readonly string _baseUrl = "https://localhost:7083/"; //"https://194.87.210.5:12000/"; //
 
     public CustomersDataService(
         ILogger<CommonHttpClient> clientLogger,
@@ -38,7 +38,7 @@ public class CustomersDataService(ILogger<CustomersDataService> logger) : ICusto
 
         var customerIds = GetGuidFromCustomer(response);
         logger.LogInformation(
-            $"finish query by Birhtday, time:{DateTime.Now.Minute} minut, count without filter{response.Count}");
+            $"finish query by Birhtday, time:{DateTime.Now.Minute} minut, count {response.Count}");
         return customerIds;
 
         //return new List<Guid>() {};
@@ -64,9 +64,11 @@ public class CustomersDataService(ILogger<CustomersDataService> logger) : ICusto
         var copyList = new List<Transaction>(response);
         var listGuids = FilterTransactionBySumTransaction(copyList, DateTime.Now.AddDays(-70), DateTime.Now.AddDays(-65));
         var customerIds = FilterTransactionByCount(response);
+        var result = customerIds.Union(listGuids).ToList();
         logger.LogInformation(
-            $"finish query by transactions, time: {DateTime.Now.Minute} minut, count without filter {response.Count}");
-        return customerIds;
+            $"finish query by transactions, time: {DateTime.Now.Minute} minut, count without filter {response.Count}, \n" +
+            $" count after filters {result.Count}");
+        return result;
 
         //return new List<Guid>() {};
     }
